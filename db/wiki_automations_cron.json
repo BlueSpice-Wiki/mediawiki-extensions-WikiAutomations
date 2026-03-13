@@ -1,0 +1,25 @@
+[
+	{
+		"name": "wiki_automations_cron",
+		"columns": [
+			{
+				"name": "wac_automation_page",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "wac_cron_expression",
+				"type": "binary",
+				"options": {
+					"length": 255,
+					"notnull": true
+				}
+			}
+		],
+		"indexes": [],
+		"pk": []
+	}
+]

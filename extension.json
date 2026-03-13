@@ -1,0 +1,249 @@
+{
+	"name": "WikiAutomations",
+	"version": "1.0.0-alpha",
+	"license-name": "GPL-3.0-only",
+	"author": [
+		"[https://www.hallowelt.com Hallo Welt! GmbH]"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:WikiAutomations",
+	"descriptionmsg": "wiki-automations-desc",
+	"requires": {
+		"MediaWiki": ">= 1.43.0"
+	},
+	"attributes": {
+		"WikiAutomations": {
+			"TriggerTypes": {
+				"page": {
+					"message": "wiki-automations-trigger-type-page"
+				},
+				"time": {
+					"message": "wiki-automations-trigger-type-time"
+				}
+			},
+			"Triggers": {
+				"edit": {
+					"type": "page",
+					"message": "wiki-automations-trigger-edit",
+					"spec": {
+						"class": "MediaWiki\\Extension\\WikiAutomations\\Trigger\\PageEventTrigger"
+					}
+				},
+				"delete": {
+					"type": "page",
+					"message": "wiki-automations-trigger-delete",
+					"spec": {
+						"class": "MediaWiki\\Extension\\WikiAutomations\\Trigger\\PageEventTrigger"
+					}
+				},
+				"schedule": {
+					"type": "time",
+					"message": "wiki-automations-trigger-schedule",
+					"spec": {
+						"class": "MediaWiki\\Extension\\WikiAutomations\\Trigger\\TimeTrigger",
+						"services": [ "WikiAutomations.Util.WikitextPageListProvider" ]
+					}
+				},
+				"nightly": {
+					"type": "time",
+					"message": "wiki-automations-trigger-nightly",
+					"spec": {
+						"class": "MediaWiki\\Extension\\WikiAutomations\\Trigger\\NightlyTrigger",
+						"services": [ "WikiAutomations.Util.WikitextPageListProvider" ]
+					}
+				}
+			},
+			"PageFilters": {
+				"namespace": {
+					"spec": {
+						"class": "MediaWiki\\Extension\\WikiAutomations\\PageFilter\\NamespaceFilter",
+						"services": [ "NamespaceInfo", "ContentLanguage" ]
+					},
+					"message": "wiki-automations-page-filter-ns-label"
+				},
+				"content-ns": {
+					"spec": {
+						"class": "MediaWiki\\Extension\\WikiAutomations\\PageFilter\\ContentPages",
+						"services": [ "NamespaceInfo" ]
+					},
+					"message": "wiki-automations-page-filter-content-label"
+				},
+				"only-major": {
+					"spec": {
+						"class": "MediaWiki\\Extension\\WikiAutomations\\PageFilter\\OnlyMajor",
+						"services": [ "RevisionLookup" ]
+					},
+					"message": "wiki-automations-page-filter-major-label"
+				}
+			},
+			"Actions": {}
+		}
+	},
+	"callback": "mwsInitComponents",
+	"MessagesDirs": {
+		"WikiAutomations": "i18n"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\WikiAutomations\\": "src/",
+		"MediaWiki\\Extension\\WikiAutomations\\Tests\\": "tests/phpunit"
+	},
+	"ResourceModules": {
+		"ext.wikiAutomations.bootstrap": {
+			"scripts": [
+				"bootstrap.js",
+				"api.js"
+			]
+		},
+		"ext.wikiAutomations.automationPage": {
+			"scripts": [
+				"automationPage.js"
+			],
+			"dependencies": [
+				"ext.wikiAutomations.automationPanel"
+			]
+		},
+		"ext.wikiAutomations.automationPanel": {
+			"scripts": [
+				"ui/toolbar/EditorToolbar.js",
+				"ui/panel/FormPanel.js",
+				"ui/AutomationEntity.js",
+				"ui/ActionEntity.js",
+				"ui/dialog/FormEditor.js",
+				"ui/dialog/ItemPicker.js",
+				"ui/dialog/ConditionPicker.js",
+				"ui/dialog/ActionPicker.js",
+				"ui/dialog/TriggerPicker.js",
+				"ui/panel/ItemPanel.js",
+				"ui/panel/TriggerPanel.js",
+				"ui/panel/FilterPanel.js",
+				"ui/panel/ActionsPanel.js",
+				"ui/AutomationPanel.js"
+			],
+			"styles": [
+				"styles.less"
+			],
+			"dependencies": [
+				"ext.wikiAutomations.bootstrap",
+				"oojs-ui",
+				"ext.forms.standalone"
+			],
+			"messages": [
+				"wiki-automations-ui-panel-triggers",
+				"wiki-automations-ui-panel-filters",
+				"wiki-automations-ui-panel-actions",
+				"wiki-automations-ui-action-add",
+				"wiki-automations-ui-dialog-trigger-picker-header",
+				"wiki-automations-ui-dialog-action-picker-header",
+				"wiki-automations-ui-action-save",
+				"wiki-automations-ui-action-cancel",
+				"wiki-automations-ui-action-add",
+				"wiki-automations-ui-action-next",
+				"wiki-automations-ui-label-enabled",
+				"wiki-automations-editor-empty-trigger",
+				"wiki-automations-editor-empty-conditions",
+				"wiki-automations-editor-empty-actions",
+				"wiki-automations-ui-action-add-action",
+				"wiki-automations-ui-action-add-trigger",
+				"wiki-automations-ui-action-add-condition",
+				"wiki-automations-ui-active",
+				"wiki-automations-ui-inactive",
+				"wiki-automations-ui-options",
+				"wiki-automations-ui-action-disable",
+				"wiki-automations-ui-action-enable",
+				"wiki-automations-ui-action-edit",
+				"wiki-automations-ui-action-delete",
+				"wiki-automations-ui-action-back",
+				"wiki-automations-ui-action-edit-entity"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "WikiAutomations/resources"
+	},
+	"Hooks": {
+		"ContentHandlerDefaultModelFor": "setContentModel",
+		"PageDeleteComplete": [ "triggerAutomations", "updateTriggerCronList" ],
+		"PageUndeleteComplete": [ "triggerAutomations", "updateTriggerCronList" ],
+		"PageMoveComplete": "updateTriggerCronList",
+		"PageSaveComplete": [ "triggerAutomations", "updateTriggerCronList" ],
+		"MediaWikiServices": "registerCron",
+		"LoadExtensionSchemaUpdates": "runDatabaseUpdates",
+		"getUserPermissionsErrors": "manageEditAutomationPermissions",
+		"BlueSpiceDiscoveryTemplateDataProviderAfterInit": "integrateDiscoverySkin",
+		"SkinTemplateNavigation::Universal": "addContentActions"
+	},
+	"HookHandlers": {
+		"setContentModel": {
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\SetAutomationContentModel"
+		},
+		"triggerAutomations": {
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\TriggerAutomations",
+			"services": [ "WikiAutomations.Runner" ]
+		},
+		"registerCron": {
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\RegisterCron"
+		},
+		"runDatabaseUpdates": {
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\RunDatabaseUpdates"
+		},
+		"updateTriggerCronList": {
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\UpdateTriggerCronList",
+			"services": [ "WikiAutomations.Util.CronListManager", "WikiAutomations.AutomationStore" ]
+		},
+		"manageEditAutomationPermissions": {
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\ManageEditPermissions"
+		},
+		"addContentActions": {
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\RegisterContentAction"
+		},
+		"integrateDiscoverySkin": {
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\IntegrateDiscoverySkin"
+		}
+	},
+	"ServiceWiringFiles": [
+		"includes/ServiceWiring.php"
+	],
+	"ContentHandlers": {
+		"automation": {
+			"class": "\\MediaWiki\\Extension\\WikiAutomations\\ContentHandler\\AutomationContentHandler"
+		}
+	},
+	"RestRoutes": [
+		{
+			"path": "/wiki-automations/v0/triggers",
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Rest\\GetTriggersHandler",
+			"services": [ "WikiAutomations.EntityFactory" ]
+		},
+		{
+			"path": "/wiki-automations/v0/page_filters",
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Rest\\GetPageFiltersHandler",
+			"services": [ "WikiAutomations.EntityFactory" ]
+		},
+		{
+			"path": "/wiki-automations/v0/actions",
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Rest\\GetActionsHandler",
+			"services": [ "WikiAutomations.EntityFactory" ]
+		},
+		{
+			"method": "POST",
+			"path": "/wiki-automations/v0/store",
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Rest\\SaveAutomationHandler",
+			"services": [ "TitleFactory", "WikiAutomations.AutomationStore", "WikiAutomations.EntityFactory" ]
+		},
+		{
+			"method": "POST",
+			"path": "/wiki-automations/v0/get_display_data",
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Rest\\GetEntityDisplayData",
+			"services": [ "WikiAutomations.EntityFactory" ]
+		}
+	],
+	"LogTypes": [ "ext-wiki-automations" ],
+	"LogActionsHandlers": {
+		"ext-wiki-automations/*": "LogFormatter"
+	},
+	"Actions": {
+		"edit-automation-source": "EditAction"
+	},
+	"manifest_version": 2,
+	"load_composer_autoloader": true
+}
