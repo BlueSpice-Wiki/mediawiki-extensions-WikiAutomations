@@ -69,5 +69,6 @@
 	"wiki-automations-time-trigger-display-pages": "Label used in the display summary of a time-based trigger to indicate the pages it will operate on.",
 	"wiki-automations-ui-action-edit-entity": "Label for the button that opens the edit dialog for an individual trigger, condition, or action entity.",
 	"wiki-automations-disabled-warning": "Warning message displayed prominently when viewing an automation that is currently disabled.",
-	"wiki-automations-ui-action-edit-source": "Label for the button that opens the raw source editor for the automation definition."
+	"wiki-automations-ui-action-edit-source": "Label for the button that opens the raw source editor for the automation definition.",
+	"bs-extendedsearch-search-center-filter-document-type-automation-label": "Label for the filter option in the search interface that allows users to filter search results to show only automation pages."
 }

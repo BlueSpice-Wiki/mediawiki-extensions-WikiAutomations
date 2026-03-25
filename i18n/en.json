@@ -69,5 +69,6 @@
 	"wiki-automations-time-trigger-display-pages": "On pages",
 	"wiki-automations-ui-action-edit-entity": "Edit entity",
 	"wiki-automations-disabled-warning": "Automation is disabled!",
-	"wiki-automations-ui-action-edit-source": "Edit source"
+	"wiki-automations-ui-action-edit-source": "Edit source",
+	"bs-extendedsearch-search-center-filter-document-type-automation-label": "Automation"
 }
