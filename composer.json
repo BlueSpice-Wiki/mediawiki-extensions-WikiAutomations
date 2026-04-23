@@ -15,7 +15,7 @@
 	"require": {
 		"composer/installers": "~1.0|~2",
 		"poliander/cron": "~3.0",
-		"mwstake/mediawiki-component-wikicron": "~3",
+		"mwstake/mediawiki-component-wikicron": "~4",
 		"mwstake/mediawiki-component-formengine": "~3"
 	},
 	"require-dev": {
