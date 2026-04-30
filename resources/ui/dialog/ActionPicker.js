@@ -1,6 +1,6 @@
 ext.wikiAutomations.ui.dialog.ActionPicker = function ( config ) {
 	config = config || {};
-	config.selectionSize = 'small';
+	config.selectionSize = 'medium';
 	ext.wikiAutomations.ui.dialog.ActionPicker.parent.call( this, config );
 };
 

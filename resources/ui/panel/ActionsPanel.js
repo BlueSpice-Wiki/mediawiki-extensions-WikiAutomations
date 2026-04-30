@@ -85,7 +85,8 @@ ext.wikiAutomations.ui.panel.ActionsPanel.prototype.loadEntities = function () {
 			entityData.displayData || null,
 			entityData.enabled || false,
 			entityInfo,
-			this.editable
+			this.editable,
+			this.automation
 		);
 		this.addEntity( entity );
 	}

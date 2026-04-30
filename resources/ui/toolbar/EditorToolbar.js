@@ -1,4 +1,4 @@
-ext.wikiAutomations.ui.toolbar._createEditorToolbar = function ( automationEnabled ) {
+ext.wikiAutomations.ui.toolbar._createEditorToolbar = function ( automationEnabled ) { // eslint-disable-line no-underscore-dangle
 	const toolFactory = new OO.ui.ToolFactory();
 	const toolGroupFactory = new OO.ui.ToolGroupFactory();
 	const toolbar = new OO.ui.Toolbar( toolFactory, toolGroupFactory );
@@ -10,7 +10,7 @@ ext.wikiAutomations.ui.toolbar._createEditorToolbar = function ( automationEnabl
 	OO.inheritClass( SaveTool, OO.ui.Tool );
 
 	SaveTool.static.name = 'save';
-	SaveTool.static.title = mw.msg( "wiki-automations-ui-action-save" );
+	SaveTool.static.title = mw.msg( 'wiki-automations-ui-action-save' );
 	SaveTool.static.flags = [ 'primary', 'progressive' ];
 	SaveTool.prototype.onSelect = function () {
 		toolbar.emit( 'save' );
@@ -26,7 +26,7 @@ ext.wikiAutomations.ui.toolbar._createEditorToolbar = function ( automationEnabl
 	OO.inheritClass( CancelTool, OO.ui.Tool );
 
 	CancelTool.static.name = 'close';
-	CancelTool.static.title = mw.msg( "wiki-automations-ui-action-cancel" );
+	CancelTool.static.title = mw.msg( 'wiki-automations-ui-action-cancel' );
 	CancelTool.static.icon = 'close';
 	CancelTool.static.flags = [ 'safe', 'close' ];
 	CancelTool.prototype.onSelect = function () {
@@ -38,11 +38,11 @@ ext.wikiAutomations.ui.toolbar._createEditorToolbar = function ( automationEnabl
 
 	function EnableTool() {
 		EnableTool.super.apply( this, arguments );
-		this.label = new OO.ui.LabelWidget( { label: mw.msg ( "wiki-automations-ui-label-enabled" ) } );
+		this.label = new OO.ui.LabelWidget( { label: mw.msg( 'wiki-automations-ui-label-enabled' ) } );
 		this.check = new OO.ui.ToggleSwitchWidget( { value: automationEnabled } );
 		this.check.connect( this, { change: 'onSelect' } );
 		this.$element.html( new OO.ui.HorizontalLayout( {
-			items: [ this.check, this.label ],
+			items: [ this.check, this.label ]
 		} ).$element );
 		this.$element.addClass( 'ext-wikiAutomations-toolbar-toggle-tool' );
 	}

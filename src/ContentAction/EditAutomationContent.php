@@ -67,6 +67,6 @@ class EditAutomationContent extends EditAction {
 	 * @return string
 	 */
 	public function getRestriction() {
-		return 'wikiadmin';
+		return 'edit-wiki-automations';
 	}
 }

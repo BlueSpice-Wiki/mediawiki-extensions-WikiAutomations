@@ -8,7 +8,10 @@
 	"globals": {
 		"ext": "readonly",
 		"OOJSPlus": "readonly",
-		"ve": "readonly"
+		"ve": "readonly",
+		"StandardDialogs": "readonly"
 	},
-	"rules": {}
+	"rules": {
+		"max-len": "off"
+	}
 }

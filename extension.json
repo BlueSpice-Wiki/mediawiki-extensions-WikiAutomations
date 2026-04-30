@@ -8,9 +8,21 @@
 	"url": "https://www.mediawiki.org/wiki/Extension:WikiAutomations",
 	"descriptionmsg": "wiki-automations-desc",
 	"requires": {
-		"MediaWiki": ">= 1.43.0"
+		"MediaWiki": ">= 1.43.0",
+		"extensions": {
+			"OOJSPlus": ">= 3.3.0",
+			"StandardDialogs": ">= 3.1.0"
+		}
 	},
 	"attributes": {
+		"BlueSpiceFoundation": {
+			"PermissionRegistry": {
+				"edit-wiki-automations": {
+					"type": "global",
+					"roles": [ "admin" ]
+				}
+			}
+		},
 		"WikiAutomations": {
 			"TriggerTypes": {
 				"page": {
@@ -81,6 +93,20 @@
 	"callback": "mwsInitComponents",
 	"MessagesDirs": {
 		"WikiAutomations": "i18n"
+	},
+	"ExtensionMessagesFiles": {
+		"WikiAutomationsAlias": "languages/Special.alias.php"
+	},
+	"AvailableRights": [
+		"edit-wiki-automations"
+	],
+	"GroupPermissions": {
+		"user": {
+			"edit-wiki-automations": false
+		},
+		"sysop": {
+			"edit-wiki-automations": true
+		}
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\WikiAutomations\\": "src/",
@@ -153,6 +179,23 @@
 				"wiki-automations-ui-action-delete",
 				"wiki-automations-ui-action-back",
 				"wiki-automations-ui-action-edit-entity"
+			]
+		},
+		"ext.wikiAutomations.automationsOverview": {
+			"scripts": [
+				"ui/dialog/NewAutomation.js",
+				"ui/OverviewGrid.js",
+				"automationsOverview.js"
+			],
+			"dependencies": [
+				"ext.wikiAutomations.bootstrap",
+				"ext.oOJSPlus.managerPanel",
+				"ext.standardDialogs.ui.NewPageDialog"
+			],
+			"messages": [
+				"wiki-automations-overview-column-title",
+				"wiki-automations-overview-column-namespace",
+				"wiki-automations-overview-action-create"
 			]
 		}
 	},
@@ -243,6 +286,11 @@
 	},
 	"Actions": {
 		"edit-automation-source": "EditAction"
+	},
+	"SpecialPages": {
+		"Automations": {
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Special\\AutomationsOverview"
+		}
 	},
 	"manifest_version": 2,
 	"load_composer_autoloader": true

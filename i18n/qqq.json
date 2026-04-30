@@ -4,6 +4,9 @@
 			"HalloWelt! GmbH"
 		]
 	},
+	"automations": "Name of the special page and navigation item for managing wiki automations.",
+	"right-edit-wiki-automations": "{{doc-right|edit-wiki-automations}}\nUser right to edit wiki automations.",
+	"action-edit-wiki-automations": "{{doc-action|edit-wiki-automations}}\nAction description shown in permission errors when a user lacks the right to edit wiki automations.",
 	"wiki-automations-desc": "Description of the WikiAutomations extension shown on Special:Version and extension management pages.",
 	"wiki-automations-trigger-type-page": "Label for trigger type representing events that occur on wiki pages.",
 	"wiki-automations-trigger-type-time": "Label for trigger type representing events that occur at a specific time or schedule.",
@@ -70,5 +73,8 @@
 	"wiki-automations-ui-action-edit-entity": "Label for the button that opens the edit dialog for an individual trigger, condition, or action entity.",
 	"wiki-automations-disabled-warning": "Warning message displayed prominently when viewing an automation that is currently disabled.",
 	"wiki-automations-ui-action-edit-source": "Label for the button that opens the raw source editor for the automation definition.",
-	"bs-extendedsearch-search-center-filter-document-type-automation-label": "Label for the filter option in the search interface that allows users to filter search results to show only automation pages."
+	"bs-extendedsearch-search-center-filter-document-type-automation-label": "Label for the filter option in the search interface that allows users to filter search results to show only automation pages.",
+	"wiki-automations-overview-column-title": "Column header label for the automation name in the automations overview table.",
+	"wiki-automations-overview-column-namespace": "Column header label for the namespace in the automations overview table.",
+	"wiki-automations-overview-action-create": "Label for the button to create a new automation in the automations overview."
 }

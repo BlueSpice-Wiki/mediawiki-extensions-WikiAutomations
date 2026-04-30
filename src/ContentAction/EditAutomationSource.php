@@ -10,4 +10,11 @@ class EditAutomationSource extends \EditAction {
 	public function getName() {
 		return 'edit-automation-source';
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getRestriction() {
+		return 'edit-wiki-automations';
+	}
 }

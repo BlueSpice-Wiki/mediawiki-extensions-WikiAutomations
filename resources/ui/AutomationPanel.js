@@ -6,6 +6,7 @@ ext.wikiAutomations.ui.AutomationPanel = function ( config, data ) {
 
 	this.data = data.automationData || {};
 	this.entityInfo = data.entityInfo || {};
+	this.enabled = this.data.enabled || false;
 
 	this.action = data.action || 'view';
 	this.automationId = data.automationId || null;
@@ -15,6 +16,7 @@ ext.wikiAutomations.ui.AutomationPanel = function ( config, data ) {
 		entities: this.data.triggers || {},
 		entityInfo: this.entityInfo.triggers || {},
 		editable: this.action !== 'view',
+		automation: this
 	} );
 
 	this.filterPanel = new ext.wikiAutomations.ui.panel.FilterPanel( {
@@ -22,6 +24,7 @@ ext.wikiAutomations.ui.AutomationPanel = function ( config, data ) {
 		entities: this.data.pageFilters || {},
 		entityInfo: this.entityInfo.filters || {},
 		editable: this.action !== 'view',
+		automation: this
 	} );
 
 	this.actionsPanel = new ext.wikiAutomations.ui.panel.ActionsPanel( {
@@ -30,6 +33,7 @@ ext.wikiAutomations.ui.AutomationPanel = function ( config, data ) {
 		entities: this.data.actions || {},
 		entityInfo: this.entityInfo.actions || {},
 		editable: this.action !== 'view',
+		automation: this
 	} );
 
 	this.enabled = typeof data.enabled === 'undefined' ? true : data.enabled;
@@ -40,7 +44,7 @@ ext.wikiAutomations.ui.AutomationPanel = function ( config, data ) {
 
 OO.inheritClass( ext.wikiAutomations.ui.AutomationPanel, OO.ui.PanelLayout );
 
-ext.wikiAutomations.ui.AutomationPanel.prototype.getValue = async function () {
+ext.wikiAutomations.ui.AutomationPanel.prototype.getValue = async function (){
 	const triggers = await this.triggerPanel.getValue();
 	const filters = await this.filterPanel.getValue();
 	const actions = await this.actionsPanel.getValue();

@@ -8,6 +8,7 @@ ext.wikiAutomations.ui.panel.ItemPanel = function ( config ) {
 	this.entities = config.entities || {};
 	this.entityInfo = config.entityInfo || {};
 	this.editable = config.editable || false;
+	this.automation = config.automation;
 
 	const header = new OO.ui.LabelWidget( {
 		label: config.label,
@@ -62,7 +63,8 @@ ext.wikiAutomations.ui.panel.ItemPanel.prototype.loadEntities = function () {
 			entityData.displayData || null,
 			entityData.enabled || false,
 			entityInfo,
-			this.editable
+			this.editable,
+			this.automation
 		);
 		this.addEntity( entity );
 	}
@@ -75,7 +77,9 @@ ext.wikiAutomations.ui.panel.ItemPanel.prototype.addNew = function ( data ) {
 		data.item.data || {},
 		null,
 		true,
-		data.item
+		data.item,
+		true,
+		this.automation
 	);
 	this.addEntity( entity );
 };
@@ -143,7 +147,7 @@ ext.wikiAutomations.ui.panel.ItemPanel.prototype.getEmptyMessage = function () {
 	return '';
 };
 
-ext.wikiAutomations.ui.panel.ItemPanel.prototype.getValue = async function () {
+ext.wikiAutomations.ui.panel.ItemPanel.prototype.getValue = async function (){
 	const value = {};
 	for ( const key in this.items ) {
 		value[key] = {

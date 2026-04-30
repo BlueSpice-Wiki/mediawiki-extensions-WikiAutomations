@@ -4,6 +4,9 @@
 			"HalloWelt! GmbH"
 		]
 	},
+	"automations": "Automations",
+	"right-edit-wiki-automations": "edit wiki automations",
+	"action-edit-wiki-automations": "Edit wiki automations",
 	"wiki-automations-desc": "Mechanism to execute automated actions on the wiki",
 	"wiki-automations-trigger-type-page": "Page event",
 	"wiki-automations-trigger-type-time": "Time",
@@ -70,5 +73,8 @@
 	"wiki-automations-ui-action-edit-entity": "Edit entity",
 	"wiki-automations-disabled-warning": "Automation is disabled!",
 	"wiki-automations-ui-action-edit-source": "Edit source",
-	"bs-extendedsearch-search-center-filter-document-type-automation-label": "Automation"
+	"bs-extendedsearch-search-center-filter-document-type-automation-label": "Automation",
+	"wiki-automations-overview-column-title": "Automation name",
+	"wiki-automations-overview-column-namespace": "Namespace",
+	"wiki-automations-overview-action-create": "Create automation"
 }

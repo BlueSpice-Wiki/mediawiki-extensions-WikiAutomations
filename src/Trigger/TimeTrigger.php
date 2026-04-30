@@ -56,12 +56,14 @@ class TimeTrigger extends GenericTrigger {
 				'name' => 'hourOfDay',
 				'options' => $hourOptions,
 				'label' => Message::newFromKey( 'wiki-automations-time-trigger-cron-time' )->text(),
+				'labelAlign' => 'top',
 			],
 			[
 				'type' => 'checkbox_multiselect',
 				'name' => 'daysOfWeek',
 				'options' => $dayOptions,
 				'label' => Message::newFromKey( 'wiki-automations-time-trigger-cron-days' )->text(),
+				'labelAlign' => 'top',
 			],
 		], [ $this->getPageProviderLayoutItem() ] ) );
 
@@ -76,7 +78,9 @@ class TimeTrigger extends GenericTrigger {
 			'type' => 'text',
 			'name' => 'pages',
 			'label' => Message::newFromKey( 'wiki-automations-time-trigger-pages-label' )->text(),
+			'labelAlign' => 'top',
 			'help' => Message::newFromKey( 'wiki-automations-time-trigger-pages-help' )->text(),
+			'helpInline' => true,
 		];
 	}
 

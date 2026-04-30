@@ -9,7 +9,7 @@ OO.inheritClass( ext.wikiAutomations.ui.dialog.ConditionPicker, ext.wikiAutomati
 ext.wikiAutomations.ui.dialog.ConditionPicker.static.name = 'conditionPicker';
 ext.wikiAutomations.ui.dialog.ConditionPicker.static.title = mw.msg( 'wiki-automations-ui-action-add-condition' );
 
-ext.wikiAutomations.ui.dialog.ConditionPicker.prototype.load = async function () {
+ext.wikiAutomations.ui.dialog.ConditionPicker.prototype.load = async function (){
 	const conditions = await ext.wikiAutomations.api.getPageFilters();
 
 	const options = [];

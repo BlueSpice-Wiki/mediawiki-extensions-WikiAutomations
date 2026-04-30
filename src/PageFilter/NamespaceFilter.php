@@ -29,6 +29,7 @@ class NamespaceFilter extends GenericPageFilter {
 		if ( empty( $namespaces ) ) {
 			return true;
 		}
+		$namespaces = array_map( 'intval', $namespaces );
 		return in_array( $page->getNamespace(), $namespaces, true );
 	}
 
@@ -60,7 +61,7 @@ class NamespaceFilter extends GenericPageFilter {
 			}
 			$options[] = [
 				'label' => $label,
-				'data' => $ns
+				'data' => (string) $ns
 			];
 		}
 		if ( empty( $options ) ) {

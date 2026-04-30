@@ -9,8 +9,8 @@ OO.inheritClass( ext.wikiAutomations.ui.dialog.FormEditor, OO.ui.ProcessDialog )
 ext.wikiAutomations.ui.dialog.FormEditor.static.name = 'entityEditor';
 ext.wikiAutomations.ui.dialog.FormEditor.static.title = mw.msg( 'wiki-automations-ui-action-edit-entity' );
 ext.wikiAutomations.ui.dialog.FormEditor.static.actions = [
-	{ action: 'cancel', label: mw.msg( 'wiki-automations-ui-action-cancel' ), flags: 'safe' },
-	{ action: 'save', label: mw.msg( 'wiki-automations-ui-action-save' ), flags: 'primary' }
+	{ action: 'cancel', title: mw.msg( 'wiki-automations-ui-action-cancel' ), icon: 'close', flags: 'safe' },
+	{ action: 'save', label: mw.msg( 'wiki-automations-ui-action-save' ), flags: [ 'primary', 'progressive' ] }
 ];
 
 ext.wikiAutomations.ui.dialog.FormEditor.prototype.initialize = function () {
@@ -29,7 +29,7 @@ ext.wikiAutomations.ui.dialog.FormEditor.prototype.getActionProcess = function (
 			const dfd = $.Deferred();
 
 			if ( action === 'save' ) {
-				this.form.getValue().done( data => {
+				this.form.getValue().done( ( data ) => {
 					this.close( { action: 'save', data: data } );
 				} ).fail( () => {
 					dfd.reject();

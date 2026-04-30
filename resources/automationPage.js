@@ -12,9 +12,7 @@ $( () =>  {
 			const toolbar = ext.wikiAutomations.ui.toolbar._createEditorToolbar( enabled );
 			toolbar.on( 'save', async () => {
 				const value = await panel.getValue();
-				console.log( value );
 				const res = await ext.wikiAutomations.api.saveAutomation( panel.automationId, value );
-				console.log( res );
 				window.location.href = mw.Title.newFromText( panel.automationId ).getUrl();
 			} );
 			toolbar.on( 'cancel', () => {

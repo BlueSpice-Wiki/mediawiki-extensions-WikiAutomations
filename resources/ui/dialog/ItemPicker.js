@@ -13,12 +13,14 @@ OO.inheritClass( ext.wikiAutomations.ui.dialog.ItemPicker, OO.ui.ProcessDialog )
 ext.wikiAutomations.ui.dialog.ItemPicker.static.actions = [
 	{
 		action: 'cancel',
-		label: mw.msg('wiki-automations-ui-action-cancel'),
-		flags: 'safe', modes: [ 'select', 'add', 'add-direct' ]
+		icon: 'close',
+		title: mw.msg('wiki-automations-ui-action-cancel'),
+		flags: 'safe', modes: [ 'select', 'add-direct' ]
 	},
 	{
 		action: 'back',
-		label: mw.msg('wiki-automations-ui-action-back' ),
+		title: mw.msg('wiki-automations-ui-action-back' ),
+		icon: 'previous',
 		flags: 'safe', modes: [ 'add' ]
 	},
 	{
@@ -86,7 +88,7 @@ ext.wikiAutomations.ui.dialog.ItemPicker.prototype.setPanel = function ( panel )
 	}
 };
 
-ext.wikiAutomations.ui.dialog.ItemPicker.prototype.load = async function () {
+ext.wikiAutomations.ui.dialog.ItemPicker.prototype.load = async function (){
 	// NOOP
 };
 

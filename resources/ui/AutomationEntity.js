@@ -1,4 +1,4 @@
-ext.wikiAutomations.ui.AutomationEntity = function ( type, key, data, displayData, enabled, editorInfo, editable ) {
+ext.wikiAutomations.ui.AutomationEntity = function ( type, key, data, displayData, enabled, editorInfo, editable, automation ) {
 	ext.wikiAutomations.ui.AutomationEntity.parent.call( this, {
 		expanded: false,
 		padded: true
@@ -7,12 +7,13 @@ ext.wikiAutomations.ui.AutomationEntity = function ( type, key, data, displayDat
 	this.type = type;
 	this.key = key;
 	this.data = data || {};
-	console.log( "SET D", this.data );
 	this.displayData = displayData || null;
 	this.enabled = enabled || false;
 	this.labels = editorInfo.labels || {};
 	this.layout = editorInfo.layout || null;
 	this.editable = editable || false;
+
+	this.automation = automation;
 
 	this.$element.addClass( 'ext-wikiAutomations-automationEntity' );
 	this.render();
@@ -27,7 +28,7 @@ ext.wikiAutomations.ui.AutomationEntity.prototype.setEditable = function ( edita
 	}
 };
 
-ext.wikiAutomations.ui.AutomationEntity.prototype.render = async function () {
+ext.wikiAutomations.ui.AutomationEntity.prototype.render = async function (){
 	this.$element.empty();
 	const label = this.getHeaderLabel();
 	const activeBadge = this.getActiveBadge();
@@ -41,7 +42,9 @@ ext.wikiAutomations.ui.AutomationEntity.prototype.render = async function () {
 	} );
 	this.$element.append( header.$element );
 
-
+	if ( this.automation.enabled === false && this.editable === false ) {
+		activeBadge.$element.hide();
+	}
 
 	this.$displayData = $( '<div>' ).addClass( 'ext-wikiAutomations-automationEntity-displayData' );
 	this.$element.append( this.$displayData );
@@ -90,32 +93,38 @@ ext.wikiAutomations.ui.AutomationEntity.prototype.setEnabled = function ( enable
 }
 
 ext.wikiAutomations.ui.AutomationEntity.prototype.getOptionsWidget = function () {
+	const menuOptions = [
+		new OO.ui.MenuOptionWidget( {
+			data: this.enabled ? 'disable' : 'enable',
+			icon: this.enabled ? 'block' : 'unBlock',
+			label: this.enabled ?
+				mw.msg( 'wiki-automations-ui-action-disable' ) : mw.msg( 'wiki-automations-ui-action-enable' )
+		} )
+	];
+	if ( this.layout ) {
+		menuOptions.push(
+			new OO.ui.MenuOptionWidget( {
+				icon: 'edit',
+				data: 'edit',
+				label: mw.msg( 'wiki-automations-ui-action-edit' )
+			} )
+		);
+	}
+	menuOptions.push(
+		new OO.ui.MenuOptionWidget( {
+			icon: 'trash',
+			flags: [ 'destructive' ],
+			data: 'delete',
+			label: mw.msg( 'wiki-automations-ui-action-delete' )
+		} )
+	);
 	this.optionsWidget = new OO.ui.ButtonMenuSelectWidget( {
 		icon: 'verticalEllipsis',
 		label: mw.msg( 'wiki-automations-ui-options' ),
 		invisibleLabel: true,
 		framed: false,
 		menu: {
-			items: [
-				new OO.ui.MenuOptionWidget( {
-					data: this.enabled ? 'disable' : 'enable',
-					icon: this.enabled ? 'block' : 'unBlock',
-					label: this.enabled ?
-						mw.msg( 'wiki-automations-ui-action-disable' ) : mw.msg( 'wiki-automations-ui-action-enable' )
-				} ),
-				new OO.ui.MenuOptionWidget( {
-					icon: 'edit',
-					data: 'edit',
-					label: mw.msg( 'wiki-automations-ui-action-edit' ),
-					disabled: this.layout === null
-				} ),
-				new OO.ui.MenuOptionWidget( {
-					icon: 'trash',
-					flags: [ 'destructive' ],
-					data: 'delete',
-					label: mw.msg( 'wiki-automations-ui-action-delete' )
-				} )
-			]
+			items: menuOptions
 		}
 	} );
 	this.optionsWidget.getMenu().connect( this, {
@@ -151,7 +160,6 @@ ext.wikiAutomations.ui.AutomationEntity.prototype.openEditor = function () {
 	wm.addWindows( [ dialog ] );
 	wm.openWindow( dialog ).closed.then( async ( data ) => {
 		if ( data && data.action === 'save' && data.data ) {
-			console.log( "DD", data.data );
 			this.data = data.data;
 			// Will be retrieved on render
 			this.displayData = null;
