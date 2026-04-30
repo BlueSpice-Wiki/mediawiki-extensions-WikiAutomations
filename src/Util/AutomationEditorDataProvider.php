@@ -7,7 +7,7 @@ use MediaWiki\Extension\WikiAutomations\EntityFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 
-readonly class AutomationEditorDataProvider {
+class AutomationEditorDataProvider {
 
 	/**
 	 * @param EntityFactory $entityFactory
