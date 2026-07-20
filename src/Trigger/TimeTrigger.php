@@ -145,7 +145,8 @@ class TimeTrigger extends GenericTrigger {
 			return [];
 		}
 		$status = $this->pagelistProvider->processExpression(
-			$pagesExpression, User::newSystemUser( 'MediaWiki default', [ 'steal' => true ] )
+			$pagesExpression,
+			User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] )
 		);
 		if ( !$status->isOK() ) {
 			return [];
