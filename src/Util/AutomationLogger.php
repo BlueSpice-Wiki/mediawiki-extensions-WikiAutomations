@@ -29,7 +29,7 @@ class AutomationLogger {
 			// Something very wrong
 			return;
 		}
-		$actor = User::newSystemUser( 'MediaWiki default', [ 'steal' => true ] );
+		$actor = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 		if ( $status->isOK() ) {
 			$this->addEntry(
 				'automation-run-success',
