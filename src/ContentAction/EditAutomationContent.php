@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\WikiAutomations\ContentAction;
 
 use EditAction;
 use MediaWiki\Extension\WikiAutomations\Content\AutomationContent;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 
@@ -41,7 +42,7 @@ class EditAutomationContent extends EditAction {
 		}
 
 		$this->getOutput()->addHTML(
-			\Html::element( 'div', $containerData )
+			Html::element( 'div', $containerData )
 		);
 		$this->getOutput()->addModules( [ 'ext.wikiAutomations.automationPage' ] );
 	}

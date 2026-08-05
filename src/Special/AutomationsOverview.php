@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\WikiAutomations\Special;
 
-use Html;
+use MediaWiki\Html\Html;
 use OOJSPlus\Special\OOJSGridSpecialPage;
 
 class AutomationsOverview extends OOJSGridSpecialPage {
