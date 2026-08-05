@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\WikiAutomations\ContentHandler;
 
-use Html;
 use LogEventsList;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\JsonContentHandler;
@@ -12,6 +11,7 @@ use MediaWiki\Extension\WikiAutomations\ContentAction\EditAutomationContent;
 use MediaWiki\Extension\WikiAutomations\ContentAction\EditAutomationSource;
 use MediaWiki\Extension\WikiAutomations\Exception\EntityNotFoundException;
 use MediaWiki\Extension\WikiAutomations\Util\AutomationEditorDataProvider;
+use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
