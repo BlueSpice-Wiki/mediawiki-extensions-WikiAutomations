@@ -213,7 +213,8 @@
 		"LoadExtensionSchemaUpdates": "runDatabaseUpdates",
 		"getUserPermissionsErrors": "manageEditAutomationPermissions",
 		"BlueSpiceDiscoveryTemplateDataProviderAfterInit": "integrateDiscoverySkin",
-		"SkinTemplateNavigation::Universal": "addContentActions"
+		"SkinTemplateNavigation::Universal": "addContentActions",
+		"MWStakeCommonUIRegisterSkinSlotComponents": "commonUserInterface"
 	},
 	"HookHandlers": {
 		"setContentModel": {
@@ -241,6 +242,10 @@
 		},
 		"integrateDiscoverySkin": {
 			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\IntegrateDiscoverySkin"
+		},
+		"commonUserInterface": {
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\CommonUserInterface",
+			"services": [ "PermissionManager" ]
 		}
 	},
 	"ServiceWiringFiles": [
