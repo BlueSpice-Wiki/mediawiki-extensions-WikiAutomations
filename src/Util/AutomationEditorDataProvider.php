@@ -31,11 +31,12 @@ class AutomationEditorDataProvider {
 		$automationData = [
 			'triggers' => array_map( static function ( $trigger ) {
 				return [
-					'data' => $trigger->getData(),
-					'displayData' => $trigger->getDisplayData(),
-					'enabled' => $trigger->isEnabled()
+					'key' => $trigger['key'],
+					'data' => $trigger['trigger']->getData(),
+					'displayData' => $trigger['trigger']->getDisplayData(),
+					'enabled' => $trigger['trigger']->isEnabled()
 				];
-			}, $automation->getTriggers() ),
+			}, $automation->getTriggersWithKeys() ),
 			'pageFilters' => array_map( static function ( $filter ) {
 				return [
 					'data' => $filter->getData(),

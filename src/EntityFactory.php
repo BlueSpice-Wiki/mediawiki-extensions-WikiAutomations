@@ -99,12 +99,19 @@ final class EntityFactory implements LoggerAwareInterface {
 	 */
 	public function automationFromData( array $data ): Automation {
 		$triggers = [];
-		foreach ( $data['triggers'] ?? [] as $triggerKey => $triggerData ) {
+		foreach ( $data['triggers'] ?? [] as $triggerId => $triggerData ) {
+			if ( !is_array( $triggerData ) ) {
+				continue;
+			}
+			$triggerKey = $triggerData['key'] ?? (string)$triggerId;
 			try {
 				$trigger = $this->createTrigger( $triggerKey );
 				$trigger->setData( $triggerData['data'] ?? [] );
 				$trigger->setEnabled( $triggerData['enabled'] ?? true );
-				$triggers[$triggerKey] = $trigger;
+				$triggers[] = [
+					'key' => $triggerKey,
+					'trigger' => $trigger
+				];
 			} catch ( EntityNotFoundException $e ) {
 				$this->logger->warning( "Automation uses trigger that does not exist", [ 'exception' => $e ] );
 				continue;

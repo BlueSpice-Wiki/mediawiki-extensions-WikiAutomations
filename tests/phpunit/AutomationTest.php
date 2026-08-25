@@ -141,4 +141,19 @@ class AutomationTest extends TestCase {
 		$this->assertCount( 2, $serialized['pageFilters'] );
 		$this->assertCount( 2, $serialized['actions'] );
 	}
+
+	public function testJsonSerializePreservesTriggerKeys() {
+		$firstTrigger = $this->createMockTrigger( [ 'type' => 'edit' ] );
+		$secondTrigger = $this->createMockTrigger( [ 'type' => 'edit' ] );
+		$automation = new Automation( [
+			[ 'key' => 'edit', 'trigger' => $firstTrigger ],
+			[ 'key' => 'edit', 'trigger' => $secondTrigger ],
+		], [], [] );
+
+		$serialized = $automation->jsonSerialize();
+
+		$this->assertCount( 2, $serialized['triggers'] );
+		$this->assertSame( 'edit', $serialized['triggers'][0]['key'] );
+		$this->assertSame( 'edit', $serialized['triggers'][1]['key'] );
+	}
 }

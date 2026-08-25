@@ -61,7 +61,7 @@ class NamespaceFilter extends GenericPageFilter {
 			}
 			$options[] = [
 				'label' => $label,
-				'data' => (string) $ns
+				'data' => (string)$ns
 			];
 		}
 		if ( empty( $options ) ) {

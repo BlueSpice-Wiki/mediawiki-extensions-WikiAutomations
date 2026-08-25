@@ -5,7 +5,7 @@ use MediaWiki\Extension\WikiAutomations\AutomationStore;
 use MediaWiki\Extension\WikiAutomations\EntityFactory;
 use MediaWiki\Extension\WikiAutomations\Util\AutomationLogger;
 use MediaWiki\Extension\WikiAutomations\Util\TriggerCronListManager;
-use MediaWiki\Extension\WikiAutomations\Util\WikitextPagelistProvider;
+use MediaWiki\Extension\WikiAutomations\Util\WikitextExpressionParser;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
@@ -39,10 +39,11 @@ return [
 		$runner->setLogger( $services->getService( 'WikiAutomations._Logger' ) );
 		return $runner;
 	},
-	'WikiAutomations.Util.WikitextPageListProvider' => static function ( MediaWikiServices $services ) {
-		return new WikitextPagelistProvider(
+	'WikiAutomations.Util.WikitextExpressionParser' => static function ( MediaWikiServices $services ) {
+		return new WikitextExpressionParser(
 			$services->getParser(),
-			$services->getTitleFactory()
+			$services->getTitleFactory(),
+			$services->getUserFactory()
 		);
 	},
 	'WikiAutomations.Util.AutomationLogger' => static function ( MediaWikiServices $services ) {

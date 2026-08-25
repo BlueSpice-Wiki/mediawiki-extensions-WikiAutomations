@@ -30,6 +30,6 @@ class RegisterCron implements MediaWikiServicesHook {
 					'WikiAutomations.Util.CronListManager', 'WikiAutomations._Logger'
 				],
 			]
-		] ) );
+		], timeout: 600 ) );
 	}
 }

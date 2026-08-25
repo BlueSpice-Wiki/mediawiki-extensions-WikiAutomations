@@ -52,7 +52,7 @@
 					"message": "wiki-automations-trigger-schedule",
 					"spec": {
 						"class": "MediaWiki\\Extension\\WikiAutomations\\Trigger\\TimeTrigger",
-						"services": [ "WikiAutomations.Util.WikitextPageListProvider" ]
+						"services": [ "WikiAutomations.Util.WikitextExpressionParser" ]
 					}
 				},
 				"nightly": {
@@ -60,7 +60,7 @@
 					"message": "wiki-automations-trigger-nightly",
 					"spec": {
 						"class": "MediaWiki\\Extension\\WikiAutomations\\Trigger\\NightlyTrigger",
-						"services": [ "WikiAutomations.Util.WikitextPageListProvider" ]
+						"services": [ "WikiAutomations.Util.WikitextExpressionParser" ]
 					}
 				}
 			},
