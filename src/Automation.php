@@ -18,7 +18,41 @@ final class Automation implements JsonSerializable {
 	 * @return IAutomationTrigger[]
 	 */
 	public function getTriggers(): array {
-		return $this->triggers;
+		$triggers = [];
+		foreach ( $this->triggers as $triggerDefinition ) {
+			if ( $triggerDefinition instanceof IAutomationTrigger ) {
+				$triggers[] = $triggerDefinition;
+				continue;
+			}
+			if ( is_array( $triggerDefinition ) && isset( $triggerDefinition['trigger'] ) ) {
+				$triggers[] = $triggerDefinition['trigger'];
+			}
+		}
+		return $triggers;
+	}
+
+	/**
+	 * @return array<int, array{key:string, trigger:IAutomationTrigger}>
+	 */
+	public function getTriggersWithKeys(): array {
+		$triggers = [];
+		foreach ( $this->triggers as $index => $triggerDefinition ) {
+			if ( $triggerDefinition instanceof IAutomationTrigger ) {
+				$triggers[] = [ 'key' => (string)$index, 'trigger' => $triggerDefinition ];
+				continue;
+			}
+			if ( !is_array( $triggerDefinition ) ) {
+				continue;
+			}
+			if ( !isset( $triggerDefinition['key'] ) || !isset( $triggerDefinition['trigger'] ) ) {
+				continue;
+			}
+			$triggers[] = [
+				'key' => (string)$triggerDefinition['key'],
+				'trigger' => $triggerDefinition['trigger']
+			];
+		}
+		return $triggers;
 	}
 
 	/**
@@ -56,11 +90,13 @@ final class Automation implements JsonSerializable {
 	public function jsonSerialize() {
 		return [
 			'triggers' => array_map( static function ( $trigger ) {
+				$data = $trigger['trigger']->getData();
 				return [
-					'data' => $trigger->getData(),
-					'enabled' => $trigger->isEnabled()
+					'key' => $trigger['key'],
+					'data' => $data,
+					'enabled' => $trigger['trigger']->isEnabled()
 				];
-			}, $this->getTriggers() ),
+			}, $this->getTriggersWithKeys() ),
 			'pageFilters' => array_map( static function ( $filter ) {
 				return [
 					'data' => $filter->getData(),

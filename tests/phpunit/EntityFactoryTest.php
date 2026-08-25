@@ -310,4 +310,40 @@ class EntityFactoryTest extends TestCase {
 		$this->assertEquals( [], $automation->getPageFilters() );
 		$this->assertEquals( [], $automation->getActions() );
 	}
+
+	public function testAutomationFromDataAllowsMultipleSameTriggers() {
+		$triggerRegistry = [
+			'edit' => [ 'type' => 'page', 'spec' => [ 'class' => 'MockTriggerClass' ] ]
+		];
+
+		$firstTrigger = $this->createMockTrigger();
+		$secondTrigger = $this->createMockTrigger();
+
+		$objectFactory = $this->createMockObjectFactory();
+		$objectFactory->method( 'createObject' )
+			->willReturnOnConsecutiveCalls( $firstTrigger, $secondTrigger );
+
+		$factory = new EntityFactory(
+			[],
+			$triggerRegistry,
+			[],
+			[],
+			$objectFactory
+		);
+		$factory->setLogger( new NullLogger() );
+
+		$data = [
+			'triggers' => [
+				[ 'key' => 'edit', 'data' => [ 'foo' => 'one' ], 'enabled' => true ],
+				[ 'key' => 'edit', 'data' => [ 'foo' => 'two' ], 'enabled' => false ],
+			]
+		];
+
+		$automation = $factory->automationFromData( $data );
+
+		$this->assertCount( 2, $automation->getTriggers() );
+		$this->assertCount( 2, $automation->getTriggersWithKeys() );
+		$this->assertSame( 'edit', $automation->getTriggersWithKeys()[0]['key'] );
+		$this->assertSame( 'edit', $automation->getTriggersWithKeys()[1]['key'] );
+	}
 }

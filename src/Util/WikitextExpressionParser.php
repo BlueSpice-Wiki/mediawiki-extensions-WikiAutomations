@@ -88,7 +88,9 @@ class WikitextExpressionParser {
 	 * @param PageIdentity|null $asPage
 	 * @return string
 	 */
-	private function processExpression( string $expression, UserIdentity $actor, ?PageIdentity $asPage = null ): string {
+	private function processExpression(
+		string $expression, UserIdentity $actor, ?PageIdentity $asPage = null
+	): string {
 		if ( $asPage ) {
 			$this->parser->setPage( $asPage );
 		}
