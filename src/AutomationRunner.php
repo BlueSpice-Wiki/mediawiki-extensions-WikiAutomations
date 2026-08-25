@@ -95,10 +95,14 @@ final class AutomationRunner implements LoggerAwareInterface {
 				continue;
 			}
 			$pages = [];
-			$triggers = $automation->getTriggers();
+			$triggers = $automation->getTriggersWithKeys();
 			$hasTriggers = false;
-			foreach ( $triggers as $key => $trigger ) {
-				if ( $triggerKey !== $key || !$trigger->isEnabled() ) {
+			foreach ( $triggers as $triggerDefinition ) {
+				if ( $triggerKey !== $triggerDefinition['key'] ) {
+					continue;
+				}
+				$trigger = $triggerDefinition['trigger'];
+				if ( !$trigger->isEnabled() ) {
 					continue;
 				}
 				if ( $trigger instanceof TimeTrigger ) {
@@ -112,7 +116,7 @@ final class AutomationRunner implements LoggerAwareInterface {
 				if ( $trigger instanceof PageEventTrigger && $forPages ) {
 					$trigger->setPages( $forPages );
 				}
-				$pages = $trigger->providePages( $triggerData );
+				$pages = array_merge( $pages, $trigger->providePages( $triggerData ) );
 				if ( !( $trigger instanceof PageEventTrigger ) || !empty( $pages ) ) {
 					// Do not trigger if no pages were provided on PageEventTriggers
 					$hasTriggers = true;
@@ -121,6 +125,12 @@ final class AutomationRunner implements LoggerAwareInterface {
 			if ( !$hasTriggers ) {
 				continue;
 			}
+
+			$uniquePages = [];
+			foreach ( $pages as $page ) {
+				$uniquePages[$page->getId()] = $page;
+			}
+			$pages = array_values( $uniquePages );
 			// Filter pages
 			foreach ( $automation->getPageFilters() as $filter ) {
 				if ( empty( $pages ) ) {

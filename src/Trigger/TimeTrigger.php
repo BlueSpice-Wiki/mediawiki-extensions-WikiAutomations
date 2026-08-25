@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\WikiAutomations\Trigger;
 
-use MediaWiki\Extension\WikiAutomations\Util\WikitextPagelistProvider;
+use MediaWiki\Extension\WikiAutomations\Util\WikitextExpressionParser;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\User;
@@ -21,10 +21,10 @@ class TimeTrigger extends GenericTrigger {
 	];
 
 	/**
-	 * @param WikitextPagelistProvider $pagelistProvider
+	 * @param WikitextExpressionParser $pagelistProvider
 	 */
 	public function __construct(
-		private readonly WikitextPagelistProvider $pagelistProvider
+		private readonly WikitextExpressionParser $pagelistProvider
 	) {
 	}
 
@@ -144,7 +144,7 @@ class TimeTrigger extends GenericTrigger {
 		if ( !$pagesExpression ) {
 			return [];
 		}
-		$status = $this->pagelistProvider->processExpression(
+		$status = $this->pagelistProvider->processPagelist(
 			$pagesExpression,
 			User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] )
 		);

@@ -19,7 +19,9 @@ ext.wikiAutomations.ui.panel.ActionsPanel.prototype.onAddButtonClick = function 
 				data.item.data || {},
 				null,
 				true,
-				data.item
+				data.item,
+				this.editable,
+				this.automation
 			);
 			this.addEntity( entity );
 		}
