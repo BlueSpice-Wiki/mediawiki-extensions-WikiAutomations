@@ -110,7 +110,7 @@ final class AutomationRunner implements LoggerAwareInterface {
 						continue;
 					}
 					if ( !$this->checkTimeTrigger( $trigger->getTimeExpression() ) ) {
-						// continue;
+						continue;
 					}
 				}
 				if ( $trigger instanceof PageEventTrigger && $forPages ) {
