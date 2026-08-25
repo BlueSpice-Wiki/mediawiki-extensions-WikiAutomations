@@ -2,9 +2,11 @@
 
 namespace MediaWiki\Extension\WikiAutomations\Process;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\WikiAutomations\AutomationRunner;
 use MediaWiki\Extension\WikiAutomations\EntityFactory;
 use MediaWiki\Extension\WikiAutomations\Util\TriggerCronListManager;
+use MediaWiki\User\User;
 use MWStake\MediaWiki\Component\ProcessManager\IProcessStep;
 use Psr\Log\LoggerInterface;
 
@@ -49,6 +51,9 @@ class TriggerTimeBasedTriggers implements IProcessStep {
 			'pages' => array_keys( $pages )
 		] );
 		*/
+
+		RequestContext::getMain()->setAuthority( User::newSystemUser( 'MediaWiki default', [ 'steal' => true ] ) );
+
 		$this->logger->debug( 'Running cron to trigger time-based automations' );
 		$triggers = $this->entityFactory->getTriggerKeysOfType( 'time' );
 		$res = [];
@@ -57,8 +62,8 @@ class TriggerTimeBasedTriggers implements IProcessStep {
 		}
 
 		if ( $res ) {
-			$this->logger->info( 'Due triggers found and executed', [
-				'results' => array_keys( $res )
+			$this->logger->info( 'Due triggers found and executed: {results}', [
+				'results' => json_encode( array_keys( $res ) ),
 			] );
 		} else {
 			$this->logger->debug( 'No due triggers found' );
