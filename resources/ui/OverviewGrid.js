@@ -36,7 +36,8 @@ ext.wikiAutomations.ui.AutomationOverviewPanel = function ( cfg ) {
 		store: this.store,
 		columns: columns,
 		multiSelect: false,
-		exportable: false
+		exportable: false,
+		stateId: 'wiki-automations-overview-grid'
 	};
 
 	ext.wikiAutomations.ui.AutomationOverviewPanel.parent.call( this, cfg );

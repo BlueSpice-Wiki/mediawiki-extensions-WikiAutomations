@@ -127,7 +127,6 @@ ext.wikiAutomations.ui.dialog.ItemPicker.prototype.getActionProcess = function (
 					}
 				}
 				if ( action === 'back' ) {
-					this.currentItem = null;
 					this.setPanel( 'selector' );
 					dfd.resolve();
 				}
