@@ -44,13 +44,6 @@ ext.wikiAutomations.ui.AutomationOverviewPanel = function ( cfg ) {
 
 OO.inheritClass( ext.wikiAutomations.ui.AutomationOverviewPanel, OOJSPlus.ui.panel.ManagerGrid );
 
-ext.wikiAutomations.ui.AutomationOverviewPanel.prototype.makeToolbar = function ( cfg ) {
-	if ( mw.config.get( 'skin' ) === 'bluespiceeclipse' ) {
-		return;
-	}
-	ext.wikiAutomations.ui.AutomationOverviewPanel.parent.prototype.makeToolbar.call( this, cfg );
-};
-
 ext.wikiAutomations.ui.AutomationOverviewPanel.prototype.getToolbarActions = function () {
 	return [ this.getAddAction( { icon: 'add', flags: [ 'progressive' ], displayBothIconAndLabel: true } ) ];
 };

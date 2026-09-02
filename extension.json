@@ -187,6 +187,9 @@
 				"ui/OverviewGrid.js",
 				"automationsOverview.js"
 			],
+			"skinStyles": {
+				"bluespiceeclipse": "automationsOverview.eclipse.less"
+			},
 			"dependencies": [
 				"ext.wikiAutomations.bootstrap",
 				"ext.oOJSPlus.managerPanel",
