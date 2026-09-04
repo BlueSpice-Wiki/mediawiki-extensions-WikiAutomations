@@ -63,7 +63,10 @@ final class AutomationRunner implements LoggerAwareInterface {
 		] );
 		return $this->processManager->startProcess( $process, [
 			'triggerKey' => $triggerKey,
-			'forPages' => array_map( fn ( PageIdentity $page ) => $page->getId(), $forPages ),
+			'forPages' => array_map(
+				fn ( PageIdentity $page ) => [ 'title' => $page->getDBkey(), 'namespace' => $page->getNamespace() ],
+				$forPages
+			),
 			'triggeredBy' => $triggeredBy?->getUser()->getName(),
 			'triggerData' => $triggerData
 		] );
@@ -83,7 +86,10 @@ final class AutomationRunner implements LoggerAwareInterface {
 	): array {
 		$runStatuses = [];
 		$this->logger->debug( 'Triggering automations for trigger key: ' . $triggerKey, [
-			'forPages' => array_map( fn ( PageIdentity $page ) => $page->getId(), $forPages ),
+			'forPages' => array_map(
+				fn ( PageIdentity $page ) => [ 'title' => $page->getDBkey(), 'namespace' => $page->getNamespace() ],
+				$forPages
+			),
 			'triggeredBy' => $triggeredBy?->getUser()->getName(),
 			'limitToAutomations' => $limitToAutomations
 		] );
@@ -199,7 +205,7 @@ final class AutomationRunner implements LoggerAwareInterface {
 	public function checkTimeTrigger( string $timeExpression ): bool {
 		try {
 			$date = new DateTime();
-			$date->setTime( $date->format( 'H' ), $date->format( 'i' ), 0 );
+			$date->setTime( $date->format( 'H' ), 0, 0 );
 			$exp = new CronExpression( $timeExpression );
 			if ( $exp->isValid() && $exp->isMatching( $date ) ) {
 				return true;

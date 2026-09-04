@@ -30,8 +30,8 @@ class RunAutomations implements IProcessStep {
 		if ( $data['triggeredBy'] ) {
 			$triggeredBy = $this->userFactory->newFromName( $data['triggeredBy'] );
 		}
-		$pages = array_map( function ( $pageId ) {
-			return $this->titleFactory->newFromID( $pageId );
+		$pages = array_map( function ( $pageData ) {
+			return $this->titleFactory->makeTitle( $pageData['namespace'], $pageData['title'] );
 		}, $data['forPages'] );
 		$pages = array_filter( $pages );
 
