@@ -39,6 +39,7 @@ class ContentPages extends GenericPageFilter {
 				'name' => 'isContent',
 				'label' => Message::newFromKey( 'wiki-automations-page-filter-content-pages-label' )->text(),
 				'required' => false,
+				'widget_$overlay' => true,
 				'options' => [
 					[
 						'data' => '0',

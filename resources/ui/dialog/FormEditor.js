@@ -1,5 +1,6 @@
 ext.wikiAutomations.ui.dialog.FormEditor = function ( config, entity ) {
 	config = config || {};
+	config.size = config.size || 'large';
 	ext.wikiAutomations.ui.dialog.FormEditor.parent.call( this, config );
 	this.entity = entity;
 };
@@ -19,6 +20,7 @@ ext.wikiAutomations.ui.dialog.FormEditor.prototype.initialize = function () {
 	this.form = new ext.wikiAutomations.ui.panel.FormPanel( {
 		expanded: false, padded: true
 	}, this.entity.layout, this.entity.data, this );
+	this.form.connect( this, { updateSize: 'updateSize' } );
 
 	this.$body.append( this.form.$element );
 };

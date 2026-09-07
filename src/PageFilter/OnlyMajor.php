@@ -39,6 +39,7 @@ class OnlyMajor extends GenericPageFilter {
 				'name' => 'mustBeMajor',
 				'label' => Message::newFromKey( 'wiki-automations-page-filter-only-major-label' )->text(),
 				'required' => false,
+				'widget_$overlay' => true,
 				'options' => [
 					[
 						'data' => '0',
