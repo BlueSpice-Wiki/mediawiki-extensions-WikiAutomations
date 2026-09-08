@@ -106,6 +106,6 @@ class AutomationContentHandler extends JsonContentHandler {
 		LogEventsList::showLogExtract( $logText, [ 'ext-wiki-automations' ], $title->getPrefixedText() );
 		$text .= $logText;
 
-		$parserOutput->setRawText( $text );
+		$parserOutput->setContentHolderText( $text );
 	}
 }
