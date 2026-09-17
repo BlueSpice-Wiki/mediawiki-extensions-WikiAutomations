@@ -25,7 +25,7 @@ class EditAutomationContent extends EditAction {
 		$out->setRobotPolicy( 'noindex,nofollow' );
 		$out->disableClientCache();
 
-		$this->getOutput()->setPageTitle(
+		$this->getOutput()->setPageTitleMsg(
 			// wiki-automations-content-action-edit
 			// wiki-automations-content-action-create
 			$this->getContext()->msg( 'wiki-automations-content-action-' . $action )
