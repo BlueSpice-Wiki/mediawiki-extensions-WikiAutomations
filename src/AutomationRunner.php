@@ -143,6 +143,9 @@ final class AutomationRunner implements LoggerAwareInterface {
 			$actionValues = [];
 			// Execute actions
 			foreach ( $automation->getActions() as $action ) {
+				if ( !$action->isEnabled() ) {
+					continue;
+				}
 				if ( $triggeredBy ) {
 					$action->setTriggeredBy( $triggeredBy );
 				}
