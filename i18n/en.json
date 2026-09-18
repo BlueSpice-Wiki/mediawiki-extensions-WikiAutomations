@@ -76,5 +76,7 @@
 	"bs-extendedsearch-search-center-filter-document-type-automation-label": "Automation",
 	"wiki-automations-overview-column-title": "Automation name",
 	"wiki-automations-overview-column-namespace": "Namespace",
-	"wiki-automations-overview-action-create": "Create automation"
+	"wiki-automations-overview-action-create": "Create automation",
+	"wiki-automations-page-filter-option-no": "No",
+	"wiki-automations-page-filter-option-yes": "Yes"
 }

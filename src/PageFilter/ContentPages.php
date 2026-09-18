@@ -29,6 +29,18 @@ class ContentPages extends GenericPageFilter {
 	}
 
 	/**
+	 * @return array
+	 */
+	public function getDisplayData(): array {
+		$data = $this->getData();
+		if ( $data['isContent'] === '1' ) {
+			return [ [ 'value' => Message::newFromKey( 'wiki-automations-page-filter-option-yes' )->text() ] ];
+		} else {
+			return [ [ 'value' => Message::newFromKey( 'wiki-automations-page-filter-option-no' )->text() ] ];
+		}
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	public function getLayout(): ?IFormSpecification {
@@ -39,14 +51,15 @@ class ContentPages extends GenericPageFilter {
 				'name' => 'isContent',
 				'label' => Message::newFromKey( 'wiki-automations-page-filter-content-pages-label' )->text(),
 				'required' => false,
+				'widget_$overlay' => true,
 				'options' => [
 					[
 						'data' => '0',
-						'label' => Message::newFromKey( 'ooui-dialog-message-reject' )->text()
+						'label' => Message::newFromKey( 'wiki-automations-page-filter-option-no' )->text()
 					],
 					[
 						'data' => '1',
-						'label' => Message::newFromKey( 'ooui-dialog-message-accept' )->text()
+						'label' => Message::newFromKey( 'wiki-automations-page-filter-option-yes' )->text()
 					]
 				]
 			]

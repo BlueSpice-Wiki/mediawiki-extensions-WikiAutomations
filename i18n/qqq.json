@@ -76,5 +76,7 @@
 	"bs-extendedsearch-search-center-filter-document-type-automation-label": "Label for the filter option in the search interface that allows users to filter search results to show only automation pages.",
 	"wiki-automations-overview-column-title": "Column header label for the automation name in the automations overview table.",
 	"wiki-automations-overview-column-namespace": "Column header label for the namespace in the automations overview table.",
-	"wiki-automations-overview-action-create": "Label for the button to create a new automation in the automations overview."
+	"wiki-automations-overview-action-create": "Label for the button to create a new automation in the automations overview.",
+	"wiki-automations-page-filter-option-no": "Generic option label for a checkbox filter that indicates the filter is not active.",
+	"wiki-automations-page-filter-option-yes": "Generic option label for a checkbox filter that indicates the filter is active."
 }
