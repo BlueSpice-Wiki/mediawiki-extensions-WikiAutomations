@@ -1,6 +1,6 @@
 ext.wikiAutomations.ui.dialog.ConditionPicker = function ( config ) {
 	config = config || {};
-	config.selectionSize = 'small';
+	config.selectionSize = 'medium';
 	ext.wikiAutomations.ui.dialog.TriggerPicker.parent.call( this, config );
 };
 
