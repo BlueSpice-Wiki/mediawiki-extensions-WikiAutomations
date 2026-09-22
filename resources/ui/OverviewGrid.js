@@ -51,12 +51,16 @@ ext.wikiAutomations.ui.AutomationOverviewPanel.prototype.getToolbarActions = fun
 
 ext.wikiAutomations.ui.AutomationOverviewPanel.prototype.onAction = function ( action ) {
 	if ( action === 'add' ) {
-		const diag = new ext.wikiAutomations.ui.dialog.NewAutomation( {
-			id: 'wiki-automations-new-automation'
-		} );
-		diag.on( 'actioncompleted', ( newTitle ) => {
-			window.location.href = newTitle.getUrl( { action: 'edit', backTo: mw.config.get( 'wgPageName' ) } );
-		} );
-		diag.show();
+		this.showNewAutomationDialog();
 	}
+};
+
+ext.wikiAutomations.ui.AutomationOverviewPanel.prototype.showNewAutomationDialog = function () {
+	const diag = new ext.wikiAutomations.ui.dialog.NewAutomation( {
+		id: 'wiki-automations-new-automation'
+	} );
+	diag.on( 'actioncompleted', ( newTitle ) => {
+		window.location.href = newTitle.getUrl( { action: 'edit', backTo: mw.config.get( 'wgPageName' ) } );
+	} );
+	diag.show();
 };

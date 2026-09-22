@@ -4,7 +4,11 @@ $( () => {
 	if ( !$cnt ) {
 		return;
 	}
-	$cnt.appendChild(
-		new ext.wikiAutomations.ui.AutomationOverviewPanel().$element[ 0 ]
-	);
+	const panel = new ext.wikiAutomations.ui.AutomationOverviewPanel();
+	$cnt.appendChild( panel.$element[ 0 ] );
+
+	$( document ).on( 'click', '.wiki-automations-create-automation', ( e ) => {
+		e.preventDefault();
+		panel.showNewAutomationDialog();
+	} );
 } );

@@ -19,7 +19,8 @@ class AutomationsOverview extends OOJSGridSpecialPage {
 		$this->getOutput()->addModules( [ 'ext.wikiAutomations.automationsOverview' ] );
 		$this->getOutput()->addHTML(
 			Html::element( 'div', [
-				'id' => 'automations-overview-app-container'
+				'id' => 'automations-overview-app-container',
+				'class' => 'automations-overview-app-container'
 			] )
 		);
 	}
