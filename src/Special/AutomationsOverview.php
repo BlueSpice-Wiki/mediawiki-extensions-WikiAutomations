@@ -8,7 +8,12 @@ use OOJSPlus\Special\OOJSGridSpecialPage;
 class AutomationsOverview extends OOJSGridSpecialPage {
 
 	public function __construct() {
-		parent::__construct( 'Automations', 'edit-wiki-automations' );
+		parent::__construct( 'Automations' );
+	}
+
+	/** @inheritDoc */
+	public function getRestriction(): string {
+		return 'edit-wiki-automations';
 	}
 
 	/**
