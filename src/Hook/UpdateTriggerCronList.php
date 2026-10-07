@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Extension\WikiAutomations\Hook;
 
-use ManualLogEntry;
 use MediaWiki\Extension\WikiAutomations\AutomationStore;
 use MediaWiki\Extension\WikiAutomations\Trigger\TimeTrigger;
 use MediaWiki\Extension\WikiAutomations\Util\TriggerCronListManager;
 use MediaWiki\Hook\PageMoveCompleteHook;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\Page\Hook\PageDeleteCompleteHook;
 use MediaWiki\Page\Hook\PageUndeleteCompleteHook;
 use MediaWiki\Page\ProperPageIdentity;

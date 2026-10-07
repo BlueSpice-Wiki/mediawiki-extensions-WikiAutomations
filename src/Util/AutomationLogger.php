@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\WikiAutomations\Util;
 
-use ManualLogEntry;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;

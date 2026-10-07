@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\WikiAutomations\Hook;
 
-use ManualLogEntry;
 use MediaWiki\Extension\WikiAutomations\AutomationRunner;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\Page\Hook\PageDeleteCompleteHook;
 use MediaWiki\Page\Hook\PageUndeleteCompleteHook;
 use MediaWiki\Page\ProperPageIdentity;
