@@ -1,138 +1,148 @@
 .ext-wikiAutomations-triggerPicker-triggerButton {
-  width: 100%;
-  a {
-    width: 100%;
-    background-color: transparent;
-  }
-  margin-bottom: 10px;
+	width: 100%;
+
+	a {
+		width: 100%;
+		background-color: transparent;
+	}
+	margin-bottom: 10px;
 }
 
 .ext-wikiAutomations-automationPanel {
-  display: flex;
-  align-items:flex-start;
-  margin-top: 20px;
-  flex: 1;
+	display: flex;
+	align-items: flex-start;
+	margin-top: 20px;
+	flex: 1;
 }
 
 .ext-wikiAutomations-itemPanel {
-  flex: 1;
-  border-right: 1px solid var(--border-color-base, #a2a9b1);
-  min-height: 400px;
+	flex: 1;
+	border-right: 1px solid var( --border-color-base, #a2a9b1 );
+	min-height: 400px;
 
-  &:last-of-type {
-    border-right: none;
-  }
+	&:last-of-type {
+		border-right: none; /* stylelint-disable-line declaration-property-value-disallowed-list */
+	}
 
-  .ext-wikiAutomations-itemPanel-empty-icon {
-    display: block;
-    height: 75px;
-    width: 75px;
-    background-repeat: no-repeat;
-    background-size: 49px;
-    background-color: #F1F3F9;
-    border-radius: 100px;
-    background-position: center;
-    margin: auto auto;
+	.ext-wikiAutomations-itemPanel-empty-icon {
+		display: block;
+		height: 75px;
+		width: 75px;
+		background-repeat: no-repeat;
+		background-size: 49px;
+		background-color: #f1f3f9;
+		border-radius: 100px;
+		background-position: center;
+		margin: auto auto;
 
-    &.automation-action {
-      background-image: url('./assets/automation_action.svg');
-    }
-    &.automation-trigger {
-      background-image: url('./assets/automation_trigger.svg');
-    }
-    &.automation-condition {
-      background-image: url('./assets/automation_condition.svg');
-    }
-  }
+		&.automation-action {
+			background-image: url( ./assets/automation_action.svg );
+		}
 
-  .ext-wikiAutomations-itemPanel-empty-text {
-    text-align: center;
-    margin: 8px;
-    color: --var(--text-color-secondary, #6a737d);
-  }
+		&.automation-trigger {
+			background-image: url( ./assets/automation_trigger.svg );
+		}
 
-  .ext-wikiAutomations-itemPanel-addButton {
-    float: right;
-  }
+		&.automation-condition {
+			background-image: url( ./assets/automation_condition.svg );
+		}
+	}
 
-  .ext-wikiAutomations-automationEntity {
-    border: 1px solid var(--border-color-base, #a2a9b1);
-    padding: 8px;
-    margin-bottom: 10px;
+	.ext-wikiAutomations-itemPanel-empty-text {
+		text-align: center;
+		margin: 8px;
+		color: --var( --text-color-secondary, #6a737d );
+	}
 
-    .ext-wikiAutomations-automationEntity-label {
-      font-weight: bold;
-      max-width: 57%;
-    }
-    .ext-wikiAutomations-automationEntity-badge {
-      padding: 0 10px;
-      background-color: #DADDE3;
-      color: #54595D;
-      &.active {
-        background-color: #EFF6DD;
-        color: #688819;
-      }
-    }
-    .oo-ui-buttonMenuSelectWidget {
-      margin-left: auto;
-    }
-    .ext-wikiAutomations-automationEntity-displayDataItem {
-      display: block;
-    }
-  }
+	.ext-wikiAutomations-itemPanel-addButton {
+		float: right;
+	}
+
+	.ext-wikiAutomations-automationEntity {
+		border: 1px solid var( --border-color-base, #a2a9b1 );
+		padding: 8px;
+		margin-bottom: 10px;
+
+		.ext-wikiAutomations-automationEntity-label {
+			font-weight: bold;
+			max-width: 57%;
+		}
+
+		.ext-wikiAutomations-automationEntity-badge {
+			padding: 0 10px;
+			background-color: #dadde3;
+			color: #54595d;
+
+			&.active {
+				background-color: #eff6dd;
+				color: #688819;
+			}
+		}
+
+		.oo-ui-buttonMenuSelectWidget {
+			margin-left: auto;
+		}
+
+		.ext-wikiAutomations-automationEntity-displayDataItem {
+			display: block;
+		}
+	}
 }
 
 .ext-wikiAutomations-header {
-  display: block;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 8px;
+	display: block;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-bottom: 8px;
 }
 
 .wiki-automations-editor-toolbar {
-  .default-actions {
-    float: right;
-    .oo-ui-tool-name-save {
-      a {
-        padding: 10px;
-      }
-    }
-  }
-  .ext-wikiAutomations-toolbar-toggle-tool {
-    margin-right: 10px;
-    padding: 5px;
-  }
+	.default-actions {
+		float: right;
+
+		.oo-ui-tool-name-save {
+			a {
+				padding: 10px;
+			}
+		}
+	}
+
+	.ext-wikiAutomations-toolbar-toggle-tool {
+		margin-right: 10px;
+		padding: 5px;
+	}
 }
 
 .ext-wikiAutomations-item-picker-booklet {
-  .oo-ui-pageLayout {
-    padding: 0;
-  }
+	.oo-ui-pageLayout {
+		padding: 0;
+	}
 }
 
 .ext-wikiAutomations-triggerPicker-booklet {
-  min-height: 300px;
+	min-height: 300px;
 
-  .oo-ui-pageLayout-active {
-    padding: 0;
-  }
+	.oo-ui-pageLayout-active {
+		padding: 0;
+	}
 }
 
 .ext-wikiAutomations-itemPicker-itemSelect {
-  width: 100%;
+	width: 100%;
 
-  .ext-wikiAutomations-itemPicker-entityOptionItem {
-    margin: 0 !important;
-    width: 100%;
-    a {
-      width: 100%;
-      padding: 20px !important;
-    }
+	.ext-wikiAutomations-itemPicker-entityOptionItem {
+		margin: 0 !important;
+		width: 100%;
 
-    &.oo-ui-buttonElement-active {
-      a {
-        background-color: #eaf3ff !important;
-      }
-    }
-  }
+		a {
+			width: 100%;
+			padding: 20px !important;
+		}
+
+		&.oo-ui-buttonElement-active {
+			a {
+				background-color: #eaf3ff !important;
+			}
+		}
+	}
 }
