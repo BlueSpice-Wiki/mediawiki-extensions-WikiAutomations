@@ -68,6 +68,7 @@ class SaveAutomationHandler extends SimpleHandler {
 		];
 	}
 
+	/** @inheritDoc */
 	public function needsWriteAccess() {
 		return true;
 	}

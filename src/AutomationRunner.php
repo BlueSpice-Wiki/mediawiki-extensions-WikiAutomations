@@ -64,8 +64,10 @@ final class AutomationRunner implements LoggerAwareInterface {
 		return $this->processManager->startProcess( $process, [
 			'triggerKey' => $triggerKey,
 			'forPages' => array_map(
-				fn ( PageIdentity $page ) => [ 'title' => $page->getDBkey(), 'namespace' => $page->getNamespace() ],
-				$forPages
+				static fn ( PageIdentity $page ) => [
+					'title' => $page->getDBkey(),
+					'namespace' => $page->getNamespace()
+				], $forPages
 			),
 			'triggeredBy' => $triggeredBy?->getUser()->getName(),
 			'triggerData' => $triggerData
@@ -87,8 +89,10 @@ final class AutomationRunner implements LoggerAwareInterface {
 		$runStatuses = [];
 		$this->logger->debug( 'Triggering automations for trigger key: ' . $triggerKey, [
 			'forPages' => array_map(
-				fn ( PageIdentity $page ) => [ 'title' => $page->getDBkey(), 'namespace' => $page->getNamespace() ],
-				$forPages
+				static fn ( PageIdentity $page ) => [
+					'title' => $page->getDBkey(),
+					'namespace' => $page->getNamespace()
+				], $forPages
 			),
 			'triggeredBy' => $triggeredBy?->getUser()->getName(),
 			'limitToAutomations' => $limitToAutomations
@@ -143,7 +147,7 @@ final class AutomationRunner implements LoggerAwareInterface {
 					// No pages to filter
 					break;
 				}
-				$pages = array_filter( $pages, fn ( $page ) => $filter->pageFits( $page ) );
+				$pages = array_filter( $pages, static fn ( $page ) => $filter->pageFits( $page ) );
 			}
 
 			$actionValues = [];
