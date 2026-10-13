@@ -14,23 +14,23 @@ ext.wikiAutomations.ui.dialog.ItemPicker.static.actions = [
 	{
 		action: 'cancel',
 		icon: 'close',
-		title: mw.msg('wiki-automations-ui-action-cancel'),
+		title: mw.msg( 'wiki-automations-ui-action-cancel' ),
 		flags: 'safe', modes: [ 'select', 'add-direct' ]
 	},
 	{
 		action: 'back',
-		title: mw.msg('wiki-automations-ui-action-back' ),
+		title: mw.msg( 'wiki-automations-ui-action-back' ),
 		icon: 'previous',
 		flags: 'safe', modes: [ 'add' ]
 	},
 	{
 		action: 'add',
-		label: mw.msg('wiki-automations-ui-action-add' ),
+		label: mw.msg( 'wiki-automations-ui-action-add' ),
 		flags: [ 'primary', 'progressive' ], modes: [ 'add', 'add-direct' ]
 	},
 	{
 		action: 'next',
-		label: mw.msg('wiki-automations-ui-action-next' ),
+		label: mw.msg( 'wiki-automations-ui-action-next' ),
 		flags: [ 'primary', 'progressive' ], modes: [ 'select' ]
 	}
 ];
@@ -88,7 +88,7 @@ ext.wikiAutomations.ui.dialog.ItemPicker.prototype.setPanel = function ( panel )
 	}
 };
 
-ext.wikiAutomations.ui.dialog.ItemPicker.prototype.load = async function (){
+ext.wikiAutomations.ui.dialog.ItemPicker.prototype.load = async function () {
 	// NOOP
 };
 
@@ -100,7 +100,7 @@ ext.wikiAutomations.ui.dialog.ItemPicker.prototype.onItemSelected = function ( i
 			description: item.description
 		},
 		layout: item.layout
-	}
+	};
 	if ( item.layout ) {
 		this.actions.setAbilities( { next: true, add: false } );
 		this.actions.setMode( 'select' );
@@ -136,7 +136,7 @@ ext.wikiAutomations.ui.dialog.ItemPicker.prototype.getActionProcess = function (
 				return dfd.promise();
 			},
 			this
-		)
+		);
 };
 
 ext.wikiAutomations.ui.dialog.ItemPicker.prototype.addItem = function ( dfd ) {
@@ -146,11 +146,11 @@ ext.wikiAutomations.ui.dialog.ItemPicker.prototype.addItem = function ( dfd ) {
 	if ( this.form ) {
 		this.form.getValue().done( ( data ) => {
 			this.close( { action: 'add', item: {
-					key: this.currentItem.key,
-					data: data,
-					labels: this.currentItem.labels,
-					layout: this.currentItem.layout
-				} } );
+				key: this.currentItem.key,
+				data: data,
+				labels: this.currentItem.labels,
+				layout: this.currentItem.layout
+			} } );
 		} ).fail( () => {
 			dfd.reject();
 		} );
@@ -159,7 +159,7 @@ ext.wikiAutomations.ui.dialog.ItemPicker.prototype.addItem = function ( dfd ) {
 	}
 };
 
-ext.wikiAutomations.ui.dialog.ItemPicker.prototype.initFormView = async  function ( item ) {
+ext.wikiAutomations.ui.dialog.ItemPicker.prototype.initFormView = async function ( item ) {
 	this.form = new ext.wikiAutomations.ui.panel.FormPanel( { expanded: false, padded: true }, item.layout, {}, this );
 	this.form.connect( this, { updateSize: 'updateSize' } );
 	this.mainBooklet.getPage( 'form' ).$element.html( this.form.$element );

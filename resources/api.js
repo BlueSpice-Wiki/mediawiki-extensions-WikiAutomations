@@ -30,16 +30,15 @@ ext.wikiAutomations.api = {
 		return ext.wikiAutomations.api.actions;
 	},
 
-
 	saveAutomation: async function ( page, automationData ) {
-		return await ext.wikiAutomations.api.fetch( `/wiki-automations/v0/store`, {
+		return await ext.wikiAutomations.api.fetch( '/wiki-automations/v0/store', {
 			title: page,
 			data: JSON.stringify( automationData )
 		}, 'POST' );
 	},
 
 	getDisplayData: async function ( type, key, data ) {
-		return await ext.wikiAutomations.api.fetch( `/wiki-automations/v0/get_display_data`, {
+		return await ext.wikiAutomations.api.fetch( '/wiki-automations/v0/get_display_data', {
 			entityType: type,
 			entityKey: key,
 			data: data
@@ -69,4 +68,4 @@ ext.wikiAutomations.api = {
 			console.error( e ); // eslint-disable-line no-console
 		}
 	}
-}
+};

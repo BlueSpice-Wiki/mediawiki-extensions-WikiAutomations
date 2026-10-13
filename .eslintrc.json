@@ -1,10 +1,13 @@
 {
 	"root": true,
 	"extends": [
-		"wikimedia/client-es6",
+		"wikimedia/client",
 		"wikimedia/jquery",
 		"wikimedia/mediawiki"
 	],
+	"parserOptions": {
+		"sourceType": "commonjs"
+	},
 	"globals": {
 		"ext": "readonly",
 		"OOJSPlus": "readonly",
@@ -12,6 +15,8 @@
 		"StandardDialogs": "readonly"
 	},
 	"rules": {
-		"max-len": "off"
+		"max-len": "off",
+		"no-jquery/no-global-selector": "off",
+		"no-jquery/no-done-fail": "warn"
 	}
 }

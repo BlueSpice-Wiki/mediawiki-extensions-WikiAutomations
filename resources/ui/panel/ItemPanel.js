@@ -46,7 +46,7 @@ ext.wikiAutomations.ui.panel.ItemPanel.prototype.appendAddButton = function () {
 	} );
 	this.addButton.connect( this, { click: 'onAddButtonClick' } );
 	this.$element.append( this.addButton.$element );
-}
+};
 
 ext.wikiAutomations.ui.panel.ItemPanel.prototype.onAddButtonClick = function () {
 	// NOOP
@@ -54,8 +54,8 @@ ext.wikiAutomations.ui.panel.ItemPanel.prototype.onAddButtonClick = function () 
 
 ext.wikiAutomations.ui.panel.ItemPanel.prototype.loadEntities = function () {
 	for ( const key in this.entities ) {
-		const entityData = this.entities[key];
-		const entityInfo = this.entityInfo[key] || {};
+		const entityData = this.entities[ key ];
+		const entityInfo = this.entityInfo[ key ] || {};
 		const entity = new ext.wikiAutomations.ui.AutomationEntity(
 			this.getEntityType(),
 			key,
@@ -85,17 +85,17 @@ ext.wikiAutomations.ui.panel.ItemPanel.prototype.addNew = function ( data ) {
 };
 
 ext.wikiAutomations.ui.panel.ItemPanel.prototype.addEntity = function ( entity ) {
-	if ( this.items[entity.key] ) {
-		this.removeEntity( this.items[entity.key] );
+	if ( this.items[ entity.key ] ) {
+		this.removeEntity( this.items[ entity.key ] );
 	}
 	this.removeEmptyContent();
-	this.items[entity.key] = entity;
+	this.items[ entity.key ] = entity;
 	entity.connect( this, {
 		remove: function () {
 			this.removeEntity( entity );
 		}
 	} );
-	this.items[entity.key] = entity;
+	this.items[ entity.key ] = entity;
 	this.itemPanel.$element.append( entity.$element );
 };
 
@@ -104,7 +104,7 @@ ext.wikiAutomations.ui.panel.ItemPanel.prototype.getAddButtonLabel = function ()
 };
 
 ext.wikiAutomations.ui.panel.ItemPanel.prototype.removeEntity = function ( entity ) {
-	delete this.items[entity.key];
+	delete this.items[ entity.key ];
 	entity.$element.remove();
 	if ( Object.keys( this.items ).length === 0 ) {
 		this.addEmptyContent();
@@ -147,12 +147,12 @@ ext.wikiAutomations.ui.panel.ItemPanel.prototype.getEmptyMessage = function () {
 	return '';
 };
 
-ext.wikiAutomations.ui.panel.ItemPanel.prototype.getValue = async function (){
+ext.wikiAutomations.ui.panel.ItemPanel.prototype.getValue = async function () {
 	const value = {};
 	for ( const key in this.items ) {
-		value[key] = {
-			data: this.items[key].data || {},
-			enabled: this.items[key].enabled || false
+		value[ key ] = {
+			data: this.items[ key ].data || {},
+			enabled: this.items[ key ].enabled || false
 		};
 	}
 	return value;

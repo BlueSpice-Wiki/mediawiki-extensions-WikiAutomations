@@ -44,7 +44,7 @@ ext.wikiAutomations.ui.AutomationPanel = function ( config, data ) {
 
 OO.inheritClass( ext.wikiAutomations.ui.AutomationPanel, OO.ui.PanelLayout );
 
-ext.wikiAutomations.ui.AutomationPanel.prototype.getValue = async function (){
+ext.wikiAutomations.ui.AutomationPanel.prototype.getValue = async function () {
 	const triggers = await this.triggerPanel.getValue();
 	const filters = await this.filterPanel.getValue();
 	const actions = await this.actionsPanel.getValue();

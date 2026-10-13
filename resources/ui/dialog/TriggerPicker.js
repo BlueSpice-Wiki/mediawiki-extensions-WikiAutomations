@@ -23,7 +23,7 @@ ext.wikiAutomations.ui.dialog.TriggerPicker.prototype.load = async function () {
 	const pages = [];
 	for ( const triggerTypeKey in triggers ) {
 		const triggerType = triggers[ triggerTypeKey ];
-		function pageLayout ( name, config ) {
+		function pageLayout( name, config ) { // eslint-disable-line no-inner-declarations
 			pageLayout.super.call( this, name, { expanded: false, padded: false } );
 			const options = [];
 			for ( const triggerKey in config.triggers ) {
@@ -51,7 +51,7 @@ ext.wikiAutomations.ui.dialog.TriggerPicker.prototype.load = async function () {
 			this.outlineItem.setLabel( triggerType.message );
 		};
 
-		const page = new pageLayout( triggerTypeKey, triggerType );
+		const page = new pageLayout( triggerTypeKey, triggerType ); // eslint-disable-line new-cap
 		page.connect( this, {
 			triggerSelected: 'onItemSelected'
 		} );
@@ -75,4 +75,4 @@ ext.wikiAutomations.ui.dialog.TriggerPicker.prototype.load = async function () {
 	currentPage.picker.selectItem( currentPage.picker.findFirstSelectableItem() );
 
 	setTimeout( () => this.updateSize(), 1 );
-}
+};

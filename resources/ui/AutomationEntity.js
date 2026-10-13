@@ -28,7 +28,7 @@ ext.wikiAutomations.ui.AutomationEntity.prototype.setEditable = function ( edita
 	}
 };
 
-ext.wikiAutomations.ui.AutomationEntity.prototype.render = async function (){
+ext.wikiAutomations.ui.AutomationEntity.prototype.render = async function () {
 	this.$element.empty();
 	const label = this.getHeaderLabel();
 	const activeBadge = this.getActiveBadge();
@@ -57,7 +57,7 @@ ext.wikiAutomations.ui.AutomationEntity.prototype.render = async function (){
 	if ( this.displayData ) {
 		this.$displayData.empty();
 		for ( let i = 0; i < this.displayData.length; i++ ) {
-			const dataItem = this.displayData[i];
+			const dataItem = this.displayData[ i ];
 			let text = '';
 			if ( dataItem.key ) {
 				text += dataItem.key + ': ';
@@ -90,7 +90,7 @@ ext.wikiAutomations.ui.AutomationEntity.prototype.getActiveBadge = function () {
 ext.wikiAutomations.ui.AutomationEntity.prototype.setEnabled = function ( enabled ) {
 	this.enabled = enabled;
 	this.render();
-}
+};
 
 ext.wikiAutomations.ui.AutomationEntity.prototype.getOptionsWidget = function () {
 	const menuOptions = [
@@ -141,7 +141,7 @@ ext.wikiAutomations.ui.AutomationEntity.prototype.getOptionsWidget = function ()
 			if ( item.getData() === 'edit' && this.layout ) {
 				this.openEditor( this );
 			}
- 		}
+		}
 	} );
 	return this.optionsWidget;
 };

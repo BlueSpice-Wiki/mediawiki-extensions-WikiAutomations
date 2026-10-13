@@ -35,4 +35,4 @@ ext.wikiAutomations.ui.dialog.ActionPicker.prototype.load = async function () {
 		select: ( item ) => this.onItemSelected( item.getData() )
 	} );
 	setTimeout( () => this.updateSize(), 1 );
-}
+};

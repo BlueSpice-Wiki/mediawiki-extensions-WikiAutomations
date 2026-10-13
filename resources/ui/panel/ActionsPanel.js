@@ -12,7 +12,7 @@ ext.wikiAutomations.ui.panel.ActionsPanel.prototype.onAddButtonClick = function 
 	wm.addWindows( [ dialog ] );
 	wm.openWindow( dialog ).closed.then( async ( data ) => {
 		if ( data && data.action === 'add' && data.item ) {
-			const actionId = 'action-' + Math.random().toString( 36 ).substr( 2, 9 );
+			const actionId = 'action-' + Math.random().toString( 36 ).slice( 2, 11 );
 			const entity = new ext.wikiAutomations.ui.ActionEntity(
 				actionId,
 				data.item.key,
@@ -37,13 +37,13 @@ ext.wikiAutomations.ui.panel.ActionsPanel.prototype.addEntity = function ( entit
 	} );
 
 	this.idMap[ entity.actionId ] = entity.key;
-	this.actions[entity.actionId] = entity;
+	this.actions[ entity.actionId ] = entity;
 	this.itemPanel.$element.append( entity.$element );
 };
 
 ext.wikiAutomations.ui.panel.ActionsPanel.prototype.removeEntity = function ( entity ) {
-	delete this.actions[entity.actionId];
-	delete this.idMap[entity.actionId];
+	delete this.actions[ entity.actionId ];
+	delete this.idMap[ entity.actionId ];
 	entity.$element.remove();
 	if ( Object.keys( this.actions ).length === 0 ) {
 		this.addEmptyContent();
@@ -77,9 +77,9 @@ ext.wikiAutomations.ui.panel.ActionsPanel.prototype.getAddButtonLabel = function
 
 ext.wikiAutomations.ui.panel.ActionsPanel.prototype.loadEntities = function () {
 	for ( let i = 0; i < this.entities.length; i++ ) {
-		const entityData = this.entities[i];
-		const entityInfo = this.entityInfo[entityData.key] || {};
-		const actionId = 'action-' + Math.random().toString( 36 ).substr( 2, 9 );
+		const entityData = this.entities[ i ];
+		const entityInfo = this.entityInfo[ entityData.key ] || {};
+		const actionId = 'action-' + Math.random().toString( 36 ).slice( 2, 11 );
 		const entity = new ext.wikiAutomations.ui.ActionEntity(
 			actionId,
 			entityData.key,

@@ -1,4 +1,4 @@
-$( () =>  {
+$( () => {
 	$( '.wiki-automation-page' ).each( function () {
 		const $cnt = $( this );
 		const action = $cnt.data( 'action' );
@@ -9,10 +9,10 @@ $( () =>  {
 		$cnt.html( panel.$element );
 
 		if ( action !== 'view' ) {
-			const toolbar = ext.wikiAutomations.ui.toolbar._createEditorToolbar( enabled );
+			const toolbar = ext.wikiAutomations.ui.toolbar._createEditorToolbar( enabled ); // eslint-disable-line no-underscore-dangle
 			toolbar.on( 'save', async () => {
 				const value = await panel.getValue();
-				const res = await ext.wikiAutomations.api.saveAutomation( panel.automationId, value );
+				const res = await ext.wikiAutomations.api.saveAutomation( panel.automationId, value ); // eslint-disable-line no-unused-vars
 				window.location.href = mw.Title.newFromText( panel.automationId ).getUrl();
 			} );
 			toolbar.on( 'cancel', () => {
