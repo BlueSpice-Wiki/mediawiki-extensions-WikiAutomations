@@ -96,7 +96,7 @@ ext.wikiAutomations.ui.AutomationEntity.prototype.getOptionsWidget = function ()
 	const menuOptions = [
 		new OO.ui.MenuOptionWidget( {
 			data: this.enabled ? 'disable' : 'enable',
-			icon: this.enabled ? 'block' : 'unBlock',
+			icon: this.enabled ? 'block' : 'success',
 			label: this.enabled ?
 				mw.msg( 'wiki-automations-ui-action-disable' ) : mw.msg( 'wiki-automations-ui-action-enable' )
 		} )
