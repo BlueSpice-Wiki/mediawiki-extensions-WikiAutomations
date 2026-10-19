@@ -184,8 +184,12 @@
 		"ext.wikiAutomations.automationsOverview": {
 			"scripts": [
 				"ui/dialog/NewAutomation.js",
+				"ui/dialog/DeleteAutomation.js",
 				"ui/OverviewGrid.js",
 				"automationsOverview.js"
+			],
+			"styles": [
+				"automationsOverview.less"
 			],
 			"skinStyles": {
 				"bluespiceeclipse": "automationsOverview.eclipse.less"
@@ -193,12 +197,24 @@
 			"dependencies": [
 				"ext.wikiAutomations.bootstrap",
 				"ext.oOJSPlus.managerPanel",
-				"ext.standardDialogs.ui.NewPageDialog"
+				"ext.standardDialogs.ui.NewPageDialog",
+				"mediawiki.api",
+				"oojs-ui-windows"
 			],
 			"messages": [
 				"wiki-automations-overview-column-title",
 				"wiki-automations-overview-column-namespace",
-				"wiki-automations-overview-action-create"
+				"wiki-automations-overview-column-status",
+				"wiki-automations-overview-action-create",
+				"wiki-automations-overview-delete-title",
+				"wiki-automations-overview-delete-confirm",
+				"wiki-automations-overview-delete-error",
+				"wiki-automations-overview-delete-success",
+				"wiki-automations-ui-active",
+				"wiki-automations-ui-inactive",
+				"wiki-automations-ui-action-edit",
+				"wiki-automations-ui-action-delete",
+				"cancel"
 			]
 		}
 	},
@@ -286,6 +302,11 @@
 			"path": "/wiki-automations/v0/get_display_data",
 			"class": "MediaWiki\\Extension\\WikiAutomations\\Rest\\GetEntityDisplayData",
 			"services": [ "WikiAutomations.EntityFactory" ]
+		},
+		{
+			"path": "/wiki-automations/v0/overview-store",
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Rest\\OverviewStoreHandler",
+			"services": [ "HookContainer", "WikiAutomations.AutomationStore" ]
 		}
 	],
 	"LogTypes": [ "ext-wiki-automations" ],

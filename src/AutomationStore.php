@@ -105,9 +105,9 @@ final class AutomationStore {
 
 	/**
 	 * @param array $automationPageIds
-	 * @return array
+	 * @return Title[]
 	 */
-	private function getAutomationPages( array $automationPageIds = [] ): array {
+	public function getAutomationPages( array $automationPageIds = [] ): array {
 		$query = $this->lb->getConnection( DB_REPLICA )->newSelectQueryBuilder()
 			->select( [ 'page_id', 'page_namespace', 'page_title' ] )
 			->from( 'page' )
