@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\WikiAutomations\ContentAction;
 
-use EditAction;
+use MediaWiki\Actions\EditAction;
 use MediaWiki\Extension\WikiAutomations\Content\AutomationContent;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
