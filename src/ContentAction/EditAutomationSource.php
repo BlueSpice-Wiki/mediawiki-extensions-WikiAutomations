@@ -2,7 +2,9 @@
 
 namespace MediaWiki\Extension\WikiAutomations\ContentAction;
 
-class EditAutomationSource extends \EditAction {
+use MediaWiki\Actions\EditAction;
+
+class EditAutomationSource extends EditAction {
 
 	/**
 	 * @return string
