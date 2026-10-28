@@ -79,7 +79,7 @@
 	"wiki-automations-overview-column-status": "Status",
 	"wiki-automations-overview-action-create": "Create automation",
 	"wiki-automations-overview-delete-title": "Delete automation",
-	"wiki-automations-overview-delete-confirm": "Do you really want to delete the automation \"$1\"?",
+	"wiki-automations-overview-delete-confirm": "Are you sure you want to delete the automation \"$1\"?",
 	"wiki-automations-overview-delete-success": "The automation \"$1\" has been deleted.",
 	"wiki-automations-overview-delete-error": "The automation \"$1\" could not be deleted.",
 	"wiki-automations-page-filter-option-no": "No",
