@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\WikiAutomations\ContentAction;
 
 use MediaWiki\Actions\EditAction;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Extension\WikiAutomations\Content\AutomationContent;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
@@ -12,7 +13,7 @@ class EditAutomationContent extends EditAction {
 
 	/**
 	 * @return void
-	 * @throws \PermissionsError
+	 * @throws PermissionsError
 	 * @throws \ReadOnlyError
 	 * @throws \UserBlockedError
 	 */
