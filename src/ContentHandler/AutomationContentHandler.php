@@ -58,6 +58,11 @@ class AutomationContentHandler extends JsonContentHandler {
 	 * @return string[]
 	 */
 	public function getActionOverrides() {
+		$enableEditUI = MediaWikiServices::getInstance()->getMainConfig()->get( 'WikiAutomationsEnableEditUI' );
+		if ( !$enableEditUI ) {
+			// Only allow editing the JSON source with the default edit action
+			return [];
+		}
 		return [
 			'edit' => EditAutomationContent::class,
 			'edit-automation-source' => EditAutomationSource::class,
@@ -74,6 +79,17 @@ class AutomationContentHandler extends JsonContentHandler {
 	protected function fillParserOutput(
 		Content $content, ContentParseParams $cpoParams, ParserOutput &$parserOutput
 	) {
+		$enableEditUI = MediaWikiServices::getInstance()->getMainConfig()->get( 'WikiAutomationsEnableEditUI' );
+		if ( !$enableEditUI ) {
+			// Only show the raw JSON source
+			/** @var AutomationContent $content */
+			$json = $content->isValid() ? $content->beautifyJSON() : $content->getText();
+			$parserOutput->setContentHolderText(
+				Html::element( 'pre', [ 'class' => 'mw-code mw-json wiki-automation-source' ], $json )
+			);
+			return;
+		}
+
 		$title = Title::castFromPageReference( $cpoParams->getPage() );
 
 		$parserOutput->addModules( [ 'ext.wikiAutomations.automationPage' ] );

@@ -6,6 +6,7 @@ WikiAutomations is a MediaWiki extension that allows wiki editors to define auto
 
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Configuration](#configuration)
 - [Architecture Overview](#architecture-overview)
 - [Integrating from Another Extension](#integrating-from-another-extension)
   - [Registering a Trigger](#registering-a-trigger)
@@ -29,6 +30,14 @@ WikiAutomations is a MediaWiki extension that allows wiki editors to define auto
    wfLoadExtension( 'WikiAutomations' );
    ```
 3. Run `php maintenance/update.php` to apply the required database schema changes.
+
+---
+
+## Configuration
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `$wgWikiAutomationsEnableEditUI` | `false` | Enables the visual automation editor on `.automation` pages and the `Special:Automations` overview page. If disabled, the special page is not registered and automations can only be edited as JSON source via the regular "Edit" action. |
 
 ---
 
