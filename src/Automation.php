@@ -87,7 +87,7 @@ final class Automation implements JsonSerializable {
 	/**
 	 * @return array
 	 */
-	public function jsonSerialize() {
+	public function jsonSerialize(): array {
 		return [
 			'triggers' => array_map( static function ( $trigger ) {
 				$data = $trigger['trigger']->getData();
