@@ -2,14 +2,24 @@
 
 namespace MediaWiki\Extension\WikiAutomations\Hook;
 
+use MediaWiki\Config\Config;
 use MediaWiki\Hook\SkinTemplateNavigation__UniversalHook;
 
 class RegisterContentAction implements SkinTemplateNavigation__UniversalHook {
 
 	/**
+	 * @param Config $config
+	 */
+	public function __construct( private readonly Config $config ) {
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	public function onSkinTemplateNavigation__Universal( $sktemplate, &$links ): void {
+		if ( !$this->config->get( 'WikiAutomationsEnableEditUI' ) ) {
+			return;
+		}
 		if ( $sktemplate->getTitle()->getContentModel() !== 'automation' ) {
 			return;
 		}

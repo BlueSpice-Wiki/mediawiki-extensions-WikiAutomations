@@ -91,6 +91,12 @@
 		}
 	},
 	"callback": "mwsInitComponents",
+	"config": {
+		"WikiAutomationsEnableEditUI": {
+			"value": false,
+			"description": "Enables the visual editor UI for automation pages and the Special:Automations overview. If disabled, automations can only be edited as JSON source."
+		}
+	},
 	"MessagesDirs": {
 		"WikiAutomations": "i18n"
 	},
@@ -233,7 +239,8 @@
 		"getUserPermissionsErrors": "manageEditAutomationPermissions",
 		"BlueSpiceDiscoveryTemplateDataProviderAfterInit": "integrateDiscoverySkin",
 		"SkinTemplateNavigation::Universal": "addContentActions",
-		"MWStakeCommonUIRegisterSkinSlotComponents": "commonUserInterface"
+		"MWStakeCommonUIRegisterSkinSlotComponents": "commonUserInterface",
+		"SpecialPage_initList": "manageSpecialPages"
 	},
 	"HookHandlers": {
 		"setContentModel": {
@@ -257,10 +264,16 @@
 			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\ManageEditPermissions"
 		},
 		"addContentActions": {
-			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\RegisterContentAction"
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\RegisterContentAction",
+			"services": [ "MainConfig" ]
 		},
 		"integrateDiscoverySkin": {
-			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\IntegrateDiscoverySkin"
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\IntegrateDiscoverySkin",
+			"services": [ "MainConfig" ]
+		},
+		"manageSpecialPages": {
+			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\ManageSpecialPages",
+			"services": [ "MainConfig" ]
 		},
 		"commonUserInterface": {
 			"class": "MediaWiki\\Extension\\WikiAutomations\\Hook\\CommonUserInterface",
