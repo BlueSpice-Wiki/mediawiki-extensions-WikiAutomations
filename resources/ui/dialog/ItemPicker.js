@@ -9,6 +9,7 @@ ext.wikiAutomations.ui.dialog.ItemPicker = function ( config ) {
 };
 
 OO.inheritClass( ext.wikiAutomations.ui.dialog.ItemPicker, OO.ui.ProcessDialog );
+OO.mixinClass( ext.wikiAutomations.ui.dialog.ItemPicker, ext.wikiAutomations.ui.mixin.AutoSizeDialog );
 
 ext.wikiAutomations.ui.dialog.ItemPicker.static.actions = [
 	{
