@@ -16,19 +16,16 @@ ext.wikiAutomations.ui.panel.FormPanel = function ( config, layout, data, dialog
 		Object.assign( this.layout, { data: data } )
 	);
 	this.form.connect( this, {
-		renderComplete: function ( form ) {
-			for ( const inputKey in form.items.inputs || {} ) {
-				form.items.inputs[ inputKey ].connect( this, {
-					change: () => this.emit( 'updateSize' ),
-					focus: () => this.emit( 'updateSize' ),
-					blur: () => this.emit( 'updateSize' )
-				} );
-			}
+		renderComplete: function () {
 			this.emit( 'updateSize' );
 		}
 	} );
 	this.form.render();
 	this.$element.append( this.form.$element );
+
+	if ( window.ResizeObserver ) {
+		new ResizeObserver( () => this.emit( 'updateSize' ) ).observe( this.$element[ 0 ] );
+	}
 };
 
 OO.inheritClass( ext.wikiAutomations.ui.panel.FormPanel, OO.ui.PanelLayout );

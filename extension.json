@@ -137,6 +137,7 @@
 			"scripts": [
 				"ui/toolbar/EditorToolbar.js",
 				"ui/panel/FormPanel.js",
+				"ui/mixin/AutoSizeDialog.js",
 				"ui/AutomationEntity.js",
 				"ui/ActionEntity.js",
 				"ui/dialog/FormEditor.js",

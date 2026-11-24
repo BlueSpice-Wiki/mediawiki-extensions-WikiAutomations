@@ -6,6 +6,7 @@ ext.wikiAutomations.ui.dialog.FormEditor = function ( config, entity ) {
 };
 
 OO.inheritClass( ext.wikiAutomations.ui.dialog.FormEditor, OO.ui.ProcessDialog );
+OO.mixinClass( ext.wikiAutomations.ui.dialog.FormEditor, ext.wikiAutomations.ui.mixin.AutoSizeDialog );
 
 ext.wikiAutomations.ui.dialog.FormEditor.static.name = 'entityEditor';
 ext.wikiAutomations.ui.dialog.FormEditor.static.title = mw.msg( 'wiki-automations-ui-action-edit-entity' );

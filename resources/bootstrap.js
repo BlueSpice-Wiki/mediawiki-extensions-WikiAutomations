@@ -3,6 +3,7 @@ window.ext.wikiAutomations = {
 	ui: {
 		panel: {},
 		dialog: {},
+		mixin: {},
 		toolbar: {}
 	}
 };
